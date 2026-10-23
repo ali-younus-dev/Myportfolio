@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ali Younus Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a dark "systems dossier". Hero with tilted product frames, then one case file per platform, each with a screenshot gallery. */
+:root{
+  --bg:#090b10; --bg2:#0e1218; --surface:#131822; --line:#232b39;
+  --ink:#eef1f6; --dim:#97a3b6; --accent:#ffb23e; --accent-ink:#1b1204; --cool:#46d6b4;
+  --shadow:0 30px 80px -30px rgba(0,0,0,.8);
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#eef1f6; --bg2:#e6eaf1; --surface:#ffffff; --line:#d3dae5;
+  --ink:#0d1117; --dim:#556275; --accent:#b85f00; --accent-ink:#ffffff; --cool:#0b8a70;
+  --shadow:0 30px 70px -35px rgba(20,30,50,.45); color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#eef1f6; --bg2:#e6eaf1; --surface:#ffffff; --line:#d3dae5;
+  --ink:#0d1117; --dim:#556275; --accent:#b85f00; --accent-ink:#ffffff; --cool:#0b8a70;
+  --shadow:0 30px 70px -35px rgba(20,30,50,.45); color-scheme:light}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.w{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.02em;line-height:1.02}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .w{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.mark{font:800 20px var(--display);text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--accent);color:var(--accent-ink);font-style:normal;font-size:13px}
+.nav nav{display:flex;gap:22px;font-size:14px}
+.nav nav a{text-decoration:none;color:var(--dim)}
+.nav nav a:hover{color:var(--ink)}
+@media(max-width:640px){.nav nav a:nth-child(n+3){display:none}}
+
+/* hero */
+.hero{padding-block:72px 40px;background:radial-gradient(900px 420px at 80% -10%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center}
+.eyebrow{display:inline-flex;gap:10px;align-items:center;margin-bottom:22px}
+.eyebrow b{width:8px;height:8px;border-radius:50%;background:var(--cool);box-shadow:0 0 0 4px color-mix(in srgb,var(--cool) 25%,transparent)}
+.hero h1{font-size:clamp(44px,7vw,92px);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--dim);max-width:34em;margin-top:24px}
+.lede strong{color:var(--ink);font-weight:500}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:transparent}
+.btn.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:hover{transform:translateY(-1px)}
+
+.stack{position:relative;height:440px;perspective:1600px}
+.stack .fr{position:absolute;width:78%;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.fr .bar{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.fr .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.fr .bar span{margin-left:8px;font:500 11px var(--mono);color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr img{width:100%;aspect-ratio:1600/740;object-fit:cover;object-position:top left}
+.stack .a{left:0;top:0;transform:rotateY(14deg) rotateX(4deg) translateZ(0)}
+.stack .b{right:0;top:130px;transform:rotateY(-10deg) rotateX(3deg);z-index:2}
+.stack .c{left:12%;top:268px;width:62%;transform:rotateY(8deg) rotateX(2deg);z-index:3}
+.stack:hover .a{transform:rotateY(8deg) rotateX(2deg) translate(-6px,-6px)}
+.stack:hover .b{transform:rotateY(-5deg) rotateX(1deg) translate(6px,0)}
+.stamp{position:absolute;right:2%;top:-8px;z-index:5;transform:rotate(6deg);border:2px solid var(--accent);color:var(--accent);padding:8px 12px;border-radius:6px;font:500 11px/1.35 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--bg);text-align:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.stack{height:360px;margin-top:16px}.stack .fr{width:84%}.stack .b{top:100px}.stack .c{top:210px;width:70%}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* stat strip */
+.strip{margin-top:56px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
+.strip div{padding:22px 22px;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font:800 clamp(28px,3.4vw,44px)/1 var(--display);letter-spacing:-.03em}
+.strip span{display:block;margin-top:8px;font-size:13px;color:var(--dim);line-height:1.35}
+@media(max-width:800px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip div{border-bottom:1px solid var(--line)}.strip div:nth-child(2n){border-right:0}.strip div:last-child{grid-column:1/-1;border-bottom:0}}
+
+/* sections */
+section{padding-block:96px 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:40px;align-items:end;margin-bottom:48px}
+.sec-head h2{font-size:clamp(34px,5vw,60px);font-weight:800}
+.sec-head p{color:var(--dim);font-size:18px;max-width:36em}
+@media(max-width:800px){.sec-head{grid-template-columns:1fr;gap:16px}}
+
+/* case files */
+.case{border-top:1px solid var(--line);padding-block:56px}
+.case:first-of-type{border-top:0;padding-top:0}
+.case-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:48px}
+.case h3{font-size:clamp(30px,4vw,48px);font-weight:800;margin:10px 0 16px}
+.case .role{color:var(--dim);font-size:15px}
+.case .story{color:var(--dim);margin-bottom:14px}
+.case .story strong{color:var(--ink);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{font:500 12px var(--mono);padding:5px 10px;border-radius:6px;border:1px solid var(--line);color:var(--dim);background:var(--surface)}
+.live{display:inline-flex;align-items:center;gap:8px}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cool)}
+.live.soon::before{background:var(--accent)}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:26px}
+.facts div{background:var(--surface);padding:16px 18px}
+.facts b{display:block;font:800 26px/1.05 var(--display);letter-spacing:-.02em}
+.facts span{font-size:13px;color:var(--dim);line-height:1.35;display:block;margin-top:5px}
+@media(max-width:900px){.case-top{grid-template-columns:1fr;gap:28px}}
+
+.gal{min-width:0}
+.shot{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+.shot .bar{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.shot .bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.shot .bar span{margin-left:8px;font:500 12px var(--mono);color:var(--dim)}
+.shot .view{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.shot .view img{width:100%;height:auto}
+.red{position:absolute;right:12px;bottom:12px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--bg);color:var(--accent);border:1px solid var(--accent);padding:5px 9px;border-radius:5px}
+.thumbs{display:flex;gap:10px;margin-top:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.thumbs button{flex:0 0 auto;width:132px;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);color:var(--dim);cursor:pointer;text-align:left;opacity:.72;font:inherit}
+.thumbs button img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:top left}
+.thumbs button span{display:block;padding:7px 9px;font-size:12px;line-height:1.25}
+.thumbs button[aria-pressed="true"]{opacity:1;border-color:var(--accent);color:var(--ink)}
+.thumbs button:hover{opacity:1}
+.phone-row{display:flex;gap:20px;align-items:flex-start;margin-top:18px}
+.phone{flex:0 0 auto;width:130px;border:5px solid var(--line);border-radius:22px;overflow:hidden;background:#000}
+.phone img{width:100%}
+.phone-row p{font-size:14px;color:var(--dim)}
+
+/* also shipped */
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{padding:26px;border:1px solid var(--line);border-radius:16px;background:var(--surface);display:flex;flex-direction:column;gap:12px}
+.card h4{font:700 22px/1.1 var(--display);margin:0;letter-spacing:-.01em}
+.card p{color:var(--dim);font-size:15px}
+.card .tags{margin-top:auto;padding-top:6px}
+@media(max-width:900px){.grid3{grid-template-columns:1fr}}
+
+/* war stories */
+.stories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.story-c{padding:28px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(180deg,var(--surface),var(--bg2))}
+.story-c .mono{color:var(--accent)}
+.story-c h4{font:700 24px/1.15 var(--display);margin:10px 0 12px;letter-spacing:-.01em;text-wrap:balance}
+.story-c p{color:var(--dim);font-size:15px}
+.story-c p + p{margin-top:8px}
+.story-c p b{color:var(--ink);font-weight:500}
+@media(max-width:800px){.stories{grid-template-columns:1fr}}
+
+/* stack list */
+.skills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.skills div{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.skills h5{margin:0 0 12px;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.skills ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}
+.skills li{color:var(--ink)}
+.skills li small{color:var(--dim);font-size:13px}
+@media(max-width:1000px){.skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.skills{grid-template-columns:1fr}}
+
+/* beyond code */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.two .card{height:100%}
+@media(max-width:800px){.two{grid-template-columns:1fr}}
+.brands{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+
+/* contact */
+.contact{margin-top:96px;padding-block:80px;background:var(--accent);color:var(--accent-ink)}
+.contact h2{font-size:clamp(38px,6.4vw,84px);font-weight:800;max-width:12em}
+.contact p{margin-top:20px;max-width:34em;font-size:18px;opacity:.88}
+.contact .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.contact .pill{padding:13px 20px;border-radius:999px;border:1.5px solid currentColor;font-weight:600;font-size:15px;user-select:all}
+footer{padding-block:28px}
+footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;display:none;background:rgba(5,7,10,.92);padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));align-items:center;justify-content:center;flex-direction:column;gap:14px;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:calc(100% - 50px);border-radius:10px;border:1px solid #2a3342}
+.lb p{color:#c9d2e0;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;text-align:center}
+</style>
+
+<style>body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="nav">
+  <div class="w">
+    <a class="mark" href="#top"><i>AY</i>Ali Younus</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a><a href="#depth">Engineering</a><a href="#stack">Stack</a><a href="#beyond">Beyond code</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="w">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow mono"><b></b>Karachi · open to remote roles</div>
+        <h1>I build the systems companies <em>run on.</em></h1>
+        <p class="lede"><strong>Head of IT at Fotile Pakistan.</strong> I design and ship full-stack platforms that real staff open every morning: service operations, attendance and HR, product websites, field apps. One engineer, six platforms built.</p>
+        <div class="cta">
+          <a class="btn pri" href="#work">See the work</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="stack" aria-hidden="true">
+        <div class="stamp">Redacted<br>names · figures · credentials</div>
+        <div class="fr a"><div class="bar"><i></i><i></i><i></i><span>Service operations dashboard</span></div><img src="img/svc-dashboard.webp" alt=""></div>
+        <div class="fr b"><div class="bar"><i></i><i></i><i></i><span>Live operations centre</span></div><img src="img/ams-live.webp" alt=""></div>
+        <div class="fr c"><div class="bar"><i></i><i></i><i></i><span>Product website</span></div><img src="img/fotile-halves.webp" alt=""></div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <div><b>6</b><span>platforms designed and built, five of them live today</span></div>
+      <div><b>128</b><span>employees on the attendance platform across 4 cities</span></div>
+      <div><b>3,000+</b><span>service complaints handled end to end in the portal</span></div>
+      <div><b>4.99/5</b><span>average customer rating from 313 survey responses</span></div>
+      <div><b>0</b><span>frameworks in the PHP systems, so they stay fast and easy to fix</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="work">
+  <div class="w">
+    <div class="sec-head">
+      <div><span class="mono">Selected work</span><h2 style="margin-top:12px">Systems in production</h2></div>
+      <p>Each one started with a manual process and a spreadsheet. Screenshots are real; customer and staff names, phone numbers, salary, revenue and backlog figures are blurred.</p>
+    </div>
+
+    <!-- SERVICE PORTAL -->
+    <article class="case" id="service">
+      <div class="case-top">
+        <div>
+          <span class="mono live">Live · Fotile Pakistan</span>
+          <h3>Service Portal</h3>
+          <p class="role">Sole architect and developer · PHP, MySQL, vanilla JS</p>
+          <p class="story" style="margin-top:18px"><strong>The problem.</strong> Appliance repairs across Karachi, Lahore and Islamabad ran on calls, WhatsApp and paper. Nobody could see what was open, who owned it, or what parts were sitting in a technician's van.</p>
+          <p class="story"><strong>What I built.</strong> A complaint-to-cash platform: a six-step public request form, a call-centre desk, zone-locked admin roles, a map with route building, a technician app, a service-centre workflow, parts custody with approvals, customer tracking and ratings, and a forecasting deck for management.</p>
+          <div class="facts">
+            <div><b>9</b><span>role types, each scoped by city zone on the server</span></div>
+            <div><b>895</b><span>malfunction codes in 7 categories, searchable</span></div>
+            <div><b>8,049</b><span>spare-part units tracked across 548 SKUs with a full ledger</span></div>
+            <div><b>14 days</b><span>demand forecast with 95% confidence band, computed in PHP</span></div>
+          </div>
+          <div class="tags"><span class="tag">PHP 7.4</span><span class="tag">MySQL</span><span class="tag">Leaflet + OSRM</span><span class="tag">Claude API</span><span class="tag">PWA</span><span class="tag">xlsx export</span><span class="tag">QR job cards</span></div>
+        </div>
+        <div class="gal" data-gal>
+          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Operations dashboard</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img data-main src="img/svc-dashboard.webp" alt="Service portal operations dashboard"></button><em class="red" data-red>Figures redacted</em></figure>
+          <div class="thumbs">
+            <button type="button" aria-pressed="true" data-src="img/svc-dashboard.webp" data-cap="Operations dashboard" data-red="Figures redacted"><img src="img/svc-dashboard.webp" alt=""><span>Operations dashboard</span></button>
+            <button type="button" aria-pressed="false" data-src="img/svc-map.webp" data-cap="Map Command Centre" data-red="Names redacted"><img src="img/svc-map.webp" alt=""><span>Map Command Centre</span></button>
+            <button type="button" aria-pressed="false" data-src="img/svc-call.webp" data-cap="Call-centre desk" data-red="Customers redacted"><img src="img/svc-call.webp" alt=""><span>Call-centre desk</span></button>
+            <button type="button" aria-pressed="false" data-src="img/svc-tech.webp" data-cap="Technician portal" data-red="Names redacted"><img src="img/svc-tech.webp" alt=""><span>Technician portal</span></button>
+            <button type="button" aria-pressed="false" data-src="img/svc-super.webp" data-cap="Executive view" data-red="Figures redacted"><img src="img/svc-super.webp" alt=""><span>Executive view</span></button>
+            <button type="button" aria-pressed="false" data-src="img/svc-form.webp" data-cap="Customer request form" data-red=""><img src="img/svc-form.webp" alt=""><span>Customer request form</span></button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- AMS -->
+    <article class="case" id="ams">
+      <div class="case-top">
+        <div>
+          <span class="mono live">Live · Fotile Pakistan</span>
+          <h3>Attendance &amp; HR Platform</h3>
+          <p class="role">Sole architect and developer · Node.js, PostgreSQL, React PWA</p>
+          <p class="story" style="margin-top:18px"><strong>The problem.</strong> Buddy punching, uneven leave rules between cities and month-end payroll arguments.</p>
+          <p class="story"><strong>What I built.</strong> A multi-city platform with four-layer anti-spoofing clock-in, per-location weekly-off rules, a leave balance engine, late-deduction and probation logic, field-worker tracking, executive analytics, a live operations board, and technician KPI scorecards that merge service jobs with attendance. An Arena gamification layer with a 52-item cosmetics shop turned punctuality into a game.</p>
+          <div class="facts">
+            <div><b>128</b><span>employees across 10 departments</span></div>
+            <div><b>4</b><span>cities with their own weekly-off and geofence rules</span></div>
+            <div><b>4-layer</b><span>anti-spoofing on every clock-in</span></div>
+            <div><b>52</b><span>unlockable cosmetics in the Arena reward shop</span></div>
+          </div>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">React PWA</span><span class="tag">Geofencing</span><span class="tag">React Native (in progress)</span></div>
+          <div class="phone-row">
+            <div class="phone"><img src="img/ams-mobile.webp" alt="Employee mobile app home screen"></div>
+            <p>The employee app: one tap to clock in, performance score, leave balances and recent activity. A native React Native version is in development.</p>
+          </div>
+        </div>
+        <div class="gal" data-gal>
+          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Mission Control</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img data-main src="img/ams-mission.webp" alt="HR mission control dashboard"></button><em class="red" data-red>Payroll figures redacted</em></figure>
+          <div class="thumbs">
+            <button type="button" aria-pressed="true" data-src="img/ams-mission.webp" data-cap="Mission Control" data-red="Payroll figures redacted"><img src="img/ams-mission.webp" alt=""><span>Mission Control</span></button>
+            <button type="button" aria-pressed="false" data-src="img/ams-live.webp" data-cap="Live operations centre" data-red="Employee names redacted"><img src="img/ams-live.webp" alt=""><span>Live operations</span></button>
+            <button type="button" aria-pressed="false" data-src="img/ams-employee.webp" data-cap="Attendance report" data-red="Employee names redacted"><img src="img/ams-employee.webp" alt=""><span>Attendance report</span></button>
+            <button type="button" aria-pressed="false" data-src="img/ams-analytics.webp" data-cap="Executive analytics" data-red="Payroll figures redacted"><img src="img/ams-analytics.webp" alt=""><span>Executive analytics</span></button>
+            <button type="button" aria-pressed="false" data-src="img/ams-kpi.webp" data-cap="Technician KPI scorecards" data-red="Names redacted"><img src="img/ams-kpi.webp" alt=""><span>KPI scorecards</span></button>
+            <button type="button" aria-pressed="false" data-src="img/ams-login.webp" data-cap="Sign-in" data-red=""><img src="img/ams-login.webp" alt=""><span>Sign-in</span></button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- WEBSITE -->
+    <article class="case" id="web">
+      <div class="case-top">
+        <div>
+          <span class="mono live soon">Built · preparing launch</span>
+          <h3>Fotile Pakistan Website</h3>
+          <p class="role">Design, front end and CMS · hand-written HTML, CSS, JS, PHP</p>
+          <p class="story" style="margin-top:18px"><strong>The problem.</strong> A slow WordPress site, no way to quote, and staff who needed a developer for every price change.</p>
+          <p class="story"><strong>What I built.</strong> A cinematic replacement with a bespoke animated opening on every flagship page, interactive 3D product explorers in Three.js, a synthesized Web Audio score, a quote basket that sends to WhatsApp, and a PHP dashboard where staff edit products, badges and photos without touching code. Every old URL is mapped with a 301, so search ranking survives the move.</p>
+          <div class="facts">
+            <div><b>58</b><span>products managed from the dashboard</span></div>
+            <div><b>63</b><span>journal posts migrated with SEO intact</span></div>
+            <div><b>141</b><span>URLs in the sitemap with redirect map</span></div>
+            <div><b>3 → 19 fps</b><span>one animated page rescued by removing blend-mode and fixed-background cost</span></div>
+          </div>
+          <div class="tags"><span class="tag">Three.js</span><span class="tag">Web Audio</span><span class="tag">WebGL</span><span class="tag">PHP admin</span><span class="tag">SEO migration</span><span class="tag">Quote basket</span></div>
+        </div>
+        <div class="gal" data-gal>
+          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Two Halves</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img data-main src="img/fotile-halves.webp" alt="Fotile Two Halves page"></button><em class="red" data-red hidden></em></figure>
+          <div class="thumbs">
+            <button type="button" aria-pressed="true" data-src="img/fotile-halves.webp" data-cap="Two Halves" data-red=""><img src="img/fotile-halves.webp" alt=""><span>Two Halves</span></button>
+            <button type="button" aria-pressed="false" data-src="img/fotile-opal.webp" data-cap="Opal Series" data-red=""><img src="img/fotile-opal.webp" alt=""><span>Opal Series</span></button>
+            <button type="button" aria-pressed="false" data-src="img/fotile-dish.webp" data-cap="3D product explorer" data-red=""><img src="img/fotile-dish.webp" alt=""><span>3D product explorer</span></button>
+            <button type="button" aria-pressed="false" data-src="img/fotile-admin.webp" data-cap="Admin analytics" data-red=""><img src="img/fotile-admin.webp" alt=""><span>Admin analytics</span></button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SOLAR -->
+    <article class="case" id="solar">
+      <div class="case-top">
+        <div>
+          <span class="mono live">Live · own venture</span>
+          <h3>Solar Sweep ERP</h3>
+          <p class="role">Founder-developer · PHP, MySQL</p>
+          <p class="story" style="margin-top:18px"><strong>The problem.</strong> A solar panel washing company scheduling by phone, with no view of cash or commissions.</p>
+          <p class="story"><strong>What I built.</strong> A seven-role operations platform: CRM, scheduling and reminders, a washer mobile portal, invoicing and finance, geo-locked attendance, inventory and payroll, with WhatsApp messaging that understands Pakistani phone formats.</p>
+          <div class="facts">
+            <div><b>7</b><span>user roles from owner to washer</span></div>
+            <div><b>430</b><span>active clients on the book</span></div>
+            <div><b>260+</b><span>jobs completed in a single month</span></div>
+            <div><b>9</b><span>modules from CRM to payroll</span></div>
+          </div>
+          <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">WhatsApp</span><span class="tag">Geo-attendance</span></div>
+        </div>
+        <div class="gal" data-gal>
+          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Dashboard</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img data-main src="img/solar-dash.webp" alt="Solar Sweep dashboard"></button><em class="red" data-red>Finances redacted</em></figure>
+          <div class="thumbs">
+            <button type="button" aria-pressed="true" data-src="img/solar-dash.webp" data-cap="Dashboard" data-red="Finances redacted"><img src="img/solar-dash.webp" alt=""><span>Dashboard</span></button>
+            <button type="button" aria-pressed="false" data-src="img/solar-fin.webp" data-cap="Finance and P&amp;L" data-red="Finances redacted"><img src="img/solar-fin.webp" alt=""><span>Finance and P&amp;L</span></button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- AMAZA -->
+    <article class="case" id="amaza">
+      <div class="case-top">
+        <div>
+          <span class="mono live">Live · Amaza Homes</span>
+          <h3>Amaza Homes Studio Site</h3>
+          <p class="role">Design, development and brand growth</p>
+          <p class="story" style="margin-top:18px"><strong>The problem.</strong> A premium Karachi kitchen and interiors studio whose website looked like a catalogue.</p>
+          <p class="story"><strong>What I built.</strong> A dark, editorial site with a material visualiser powered by the Gemini API, so clients can preview finishes in a real kitchen, plus a gallery, process and journal pages and a radar-style location map.</p>
+          <div class="facts">
+            <div><b>7</b><span>finishes in the AI material visualiser</span></div>
+            <div><b>Gemini</b><span>API behind the visualiser</span></div>
+          </div>
+          <div class="tags"><span class="tag">Gemini API</span><span class="tag">Canvas</span><span class="tag">SEO</span></div>
+        </div>
+        <div class="gal" data-gal>
+          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>About</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img data-main src="img/amaza-about.webp" alt="Amaza Homes about page"></button><em class="red" data-red hidden></em></figure>
+          <div class="thumbs">
+            <button type="button" aria-pressed="true" data-src="img/amaza-about.webp" data-cap="About" data-red=""><img src="img/amaza-about.webp" alt=""><span>About</span></button>
+            <button type="button" aria-pressed="false" data-src="img/amaza-vis.webp" data-cap="Material visualiser" data-red=""><img src="img/amaza-vis.webp" alt=""><span>Material visualiser</span></button>
+            <button type="button" aria-pressed="false" data-src="img/amaza-find.webp" data-cap="Find us" data-red="Phone redacted"><img src="img/amaza-find.webp" alt=""><span>Find us</span></button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ALPINE CANADA -->
+    <article class="case" id="alpine">
+      <div class="case-top">
+        <div>
+          <span class="mono live">Live · Canada</span>
+          <h3>Alpine Canada Website</h3>
+          <p class="role">Website for the national ski federation · web design and development</p>
+          <p class="story" style="margin-top:18px"><strong>The brief.</strong> One site for racers, coaches, officials, clubs and fans of Canada's national ski team, in both official languages.</p>
+          <p class="story"><strong>What it does.</strong> A pill-shaped navigation that splits visitors into Team &amp; News, Competition, Racer, Coach, Official, Club and Safe Sport, a featured-news hero, category-tagged story cards, social links, a donate call to action and a French switch on every page.</p>
+          <div class="facts">
+            <div><b>7</b><span>audience sections in the main navigation</span></div>
+            <div><b>EN / FR</b><span>bilingual from the top bar</span></div>
+          </div>
+          <div class="tags"><span class="tag">Responsive</span><span class="tag">Bilingual</span><span class="tag">News CMS</span><span class="tag">Editorial design</span></div>
+        </div>
+        <div class="gal" data-gal>
+          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Home and featured news</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img data-main src="img/alpine-hero.webp" alt="Alpine Canada home page with featured news"></button><em class="red" data-red hidden></em></figure>
+          <div class="thumbs">
+            <button type="button" aria-pressed="true" data-src="img/alpine-hero.webp" data-cap="Home and featured news" data-red=""><img src="img/alpine-hero.webp" alt=""><span>Home and featured news</span></button>
+            <button type="button" aria-pressed="false" data-src="img/alpine-news.webp" data-cap="News cards" data-red=""><img src="img/alpine-news.webp" alt=""><span>News cards</span></button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="more">
+  <div class="w">
+    <div class="sec-head">
+      <div><span class="mono">Also shipped</span><h2 style="margin-top:12px">Smaller tools, same standard</h2></div>
+      <p>Not every problem needs a platform. These solved one problem each.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><h4>StockIQ</h4><p>An offline-first warehouse audit app. Staff scan barcodes with no signal, and a serial number resolves to its model through 213 prefixes across 1,937 serials. Photo evidence, guided counts and a five-second undo.</p><div class="tags"><span class="tag">PWA</span><span class="tag">Offline</span><span class="tag">Barcode</span></div></div>
+      <div class="card"><h4>Four-seat VoIP call centre</h4><p>Designed a FreePBX and Asterisk call centre for the Lahore office, with a carrier SIP trunk and AMI screen-pops into the Service Portal.</p><div class="tags"><span class="tag">FreePBX</span><span class="tag">Asterisk</span><span class="tag">SIP</span></div></div>
+      <div class="card"><h4>Boss feed &amp; KPI bridge</h4><p>A token-secured JSON API that lets the management portal read service performance live, cached for two minutes, plus a scorecard that joins service and attendance data per technician.</p><div class="tags"><span class="tag">REST</span><span class="tag">Caching</span><span class="tag">Integration</span></div></div>
+      <div class="card"><h4>Launch campaign kit</h4><p>For a flagship product launch: a single-file cinematic digital invitation, a 17-slide pitch deck for local management and head office, a 38-item event checklist and an AI video production workflow.</p><div class="tags"><span class="tag">HTML</span><span class="tag">Deck</span><span class="tag">AI video</span></div></div>
+      <div class="card"><h4>Stock audit engine</h4><p>Reconciled a 264-SKU physical count against the system report and generated a clear variance PDF for management.</p><div class="tags"><span class="tag">Python</span><span class="tag">PDF</span></div></div>
+      <div class="card"><h4>Office network governance</h4><p>DNS-level filtering with logging behind the office router, so distracting sites and games are blocked while business tools like WhatsApp keep working.</p><div class="tags"><span class="tag">DNS</span><span class="tag">Networking</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="depth">
+  <div class="w">
+    <div class="sec-head">
+      <div><span class="mono">Engineering depth</span><h2 style="margin-top:12px">Bugs I hunted down</h2></div>
+      <p>Running software that staff depend on teaches things tutorials do not. Four fixes I am proud of.</p>
+    </div>
+    <div class="stories">
+      <div class="story-c"><span class="mono">Silent data loss</span><h4>Roles that vanished on their own</h4><p>Users kept losing access and it looked like a breach. The cause was one page that redefined a database enum on every load, which makes MySQL blank any value not in the new list.</p><p><b>Fix:</b> removed the statement, converted the column to a plain string, and made the admin screen detect and repair the old schema.</p></div>
+      <div class="story-c"><span class="mono">Wrong by default</span><h4>Complaints filed to the wrong city</h4><p>A lookup quietly returned Karachi whenever a city was missing, so Punjab and Islamabad jobs landed in the wrong zone for months.</p><p><b>Fix:</b> a province-first, case-insensitive lookup covering 110 cities, applied at all three entry points including the call-centre page that never set a zone.</p></div>
+      <div class="story-c"><span class="mono">Access control</span><h4>Reports that leaked the whole country</h4><p>Older analytics and export pages pre-dated zone scoping, so a regional head could download national data.</p><p><b>Fix:</b> audited every legacy page and locked scope on the server, overriding anything in the URL.</p></div>
+      <div class="story-c"><span class="mono">Performance</span><h4>From 3 fps to 19 fps</h4><p>A flagship animated page crawled because of fixed backgrounds, live SVG turbulence and animated blend modes.</p><p><b>Fix:</b> moved the effects to GPU-composited transforms. Same look, roughly six times smoother in testing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="w">
+    <div class="sec-head">
+      <div><span class="mono">Toolbox</span><h2 style="margin-top:12px">What I build with</h2></div>
+      <p>Chosen per problem: shared hosting where it is enough, a managed droplet where it is not.</p>
+    </div>
+    <div class="skills">
+      <div><h5>Back end</h5><ul><li>PHP 7.4+ <small>no-framework, hardened</small></li><li>Node.js · Express</li><li>MySQL · PostgreSQL</li><li>REST and token APIs</li></ul></div>
+      <div><h5>Front end</h5><ul><li>React · PWA</li><li>Vanilla JS, CSS</li><li>Three.js · WebGL · Canvas</li><li>Leaflet maps</li></ul></div>
+      <div><h5>Infrastructure</h5><ul><li>DigitalOcean · Nginx · PM2</li><li>DirectAdmin shared hosting</li><li>FreePBX · Asterisk</li><li>Git · private repos</li></ul></div>
+      <div><h5>AI &amp; automation</h5><ul><li>Claude and Gemini APIs</li><li>AI video pipelines</li><li>Google Apps Script</li><li>Prompt-engineered workflows</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="beyond">
+  <div class="w">
+    <div class="sec-head">
+      <div><span class="mono">Beyond code</span><h2 style="margin-top:12px">Brand, growth and strategy</h2></div>
+      <p>I started in digital marketing, and it shows in how I build: software that people want to open, and products that are easy to sell.</p>
+    </div>
+    <div class="two">
+      <div class="card"><h4>Brands built from zero</h4><p>Took four businesses from no digital footprint to a working one: Instagram growth, websites, SEO and paid advertising.</p><div class="brands"><span class="tag">Fotile Pakistan</span><span class="tag">Amaza Homes</span><span class="tag">Cleaning 365 Services · Canada</span><span class="tag">G Force Security · Canada</span></div></div>
+      <div class="card"><h4>Board-level strategy</h4><p>Authored a five-year transformation plan for Fotile Pakistan covering retail format, mobile experiences and a digital-first platform, and the AI-driven commercial production workflow behind its product films.</p><div class="tags"><span class="tag">Strategy</span><span class="tag">Product film</span><span class="tag">Go-to-market</span></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="contact" id="contact" style="padding-top:80px">
+  <div class="w">
+    <span class="mono" style="color:inherit;opacity:.75">Open to remote roles · UK · Canada · worldwide</span>
+    <h2 style="margin-top:14px">Let's build something people rely on.</h2>
+    <p>I am looking for a senior engineering or IT leadership role where one person can own a system from the database to the screen. Message me on WhatsApp for a live walkthrough of any platform above.</p>
+    <div class="row" id="contactRow"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="w"><span class="mono">Ali Younus · Karachi, Pakistan</span><span class="mono">Confidential data redacted in all screenshots</span></div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="Screenshot preview"><img alt=""><p></p></div>
+
+<script>
+/* Fill these in to show contact pills */
+var CONTACT={email:"",linkedin:"linkedin.com/in/ali-younus-5b9413284",whatsapp:"+92 349 1979171"};
+(function(){
+  var row=document.getElementById('contactRow'),any=false;
+  [["Email",CONTACT.email],["LinkedIn",CONTACT.linkedin],["WhatsApp",CONTACT.whatsapp]].forEach(function(p){
+    if(p[1]){any=true;var isL=p[0]==='LinkedIn',isW=p[0]==='WhatsApp';var s=document.createElement(isL||isW?'a':'span');s.className='pill';s.textContent=p[0]+': '+p[1];if(isL||isW){s.href=isW?'https://wa.me/'+p[1].replace(/\D/g,''):'https://www.'+p[1];s.target='_blank';s.rel='noopener';s.style.textDecoration='none'}row.appendChild(s)}
+  });
+  if(!any){var s=document.createElement('span');s.className='pill';s.textContent='Reply to the message that sent you this link';row.appendChild(s)}
+
+  var lb=document.getElementById('lb'),lbi=lb.querySelector('img'),lbp=lb.querySelector('p');
+  function close(){lb.classList.remove('on')}
+  lb.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+
+  document.querySelectorAll('[data-gal]').forEach(function(g){
+    var main=g.querySelector('[data-main]'),title=g.querySelector('[data-title]'),red=g.querySelector('[data-red]'),btns=g.querySelectorAll('.thumbs button');
+    function show(b){
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      main.src=b.dataset.src;main.alt=b.dataset.cap;
+      title.textContent=b.dataset.cap;
+      var r=b.dataset.red;red.hidden=!r;red.textContent=r||'';
+    }
+    btns.forEach(function(b){b.addEventListener('click',function(){show(b)})});
+    g.querySelector('.view').addEventListener('click',function(){
+      lbi.src=main.src;lbi.alt=main.alt;lbp.textContent=title.textContent+(red.hidden?'':' · '+red.textContent);lb.classList.add('on');
+    });
+  });
+})();
+</script>
+</body>
+</html>
