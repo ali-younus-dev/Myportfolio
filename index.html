@@ -177,6 +177,17 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .lb.on{display:flex}
 .lb img{max-width:100%;max-height:calc(100% - 50px);border-radius:10px;border:1px solid #2a3342}
 .lb p{color:#c9d2e0;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;text-align:center}
+
+/* ai section */
+.flow{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:22px;overflow-x:auto;margin-bottom:16px}
+.flow svg{display:block;min-width:760px;width:100%;height:auto}
+.flow .cap{margin-top:12px;font-size:13px;color:var(--dim)}
+.fn rect{fill:var(--bg2);stroke:var(--line);stroke-width:1.5}
+.fn.hot rect{stroke:var(--accent);fill:color-mix(in srgb,var(--accent) 12%,var(--bg2))}
+.fn text{fill:var(--ink);font:600 14px var(--display)}
+.fn .sub{fill:var(--dim);font:500 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.fl{stroke:var(--dim);stroke-width:1.5;fill:none}
+.fa{fill:var(--dim)}
 </style>
 
 <style>body{margin:0}[hidden]{display:none!important}</style>
@@ -186,7 +197,7 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="w">
     <a class="mark" href="#top"><i>AY</i>Ali Younus</a>
     <nav aria-label="Sections">
-      <a href="#work">Work</a><a href="#depth">Engineering</a><a href="#stack">Stack</a><a href="#beyond">Beyond code</a><a href="#contact">Contact</a>
+      <a href="#work">Work</a><a href="#ai">AI</a><a href="#depth">Engineering</a><a href="#stack">Stack</a><a href="#beyond">Beyond code</a><a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -290,6 +301,34 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
             <button type="button" aria-pressed="false" data-src="ams-analytics.webp" data-cap="Executive analytics" data-red="Payroll figures redacted"><img src="ams-analytics.webp" alt=""><span>Executive analytics</span></button>
             <button type="button" aria-pressed="false" data-src="ams-kpi.webp" data-cap="Technician KPI scorecards" data-red="Names redacted"><img src="ams-kpi.webp" alt=""><span>KPI scorecards</span></button>
             <button type="button" aria-pressed="false" data-src="ams-login.webp" data-cap="Sign-in" data-red=""><img src="ams-login.webp" alt=""><span>Sign-in</span></button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- FACE RECOGNITION -->
+    <article class="case" id="face">
+      <div class="case-top">
+        <div>
+          <span class="mono live soon">Pilot · test mode</span>
+          <h3>Face-Recognition Attendance</h3>
+          <p class="role">Designed and built end to end · enrolment, kiosk and attendance link</p>
+          <p class="story" style="margin-top:18px"><strong>The problem.</strong> Card swipes and manual sign-ins let people clock in for each other.</p>
+          <p class="story"><strong>What I built.</strong> A face-recognition clock-in system: guided enrolment with five poses and a quality score for each capture, a live landmark mesh so staff see what the camera sees, and a full-screen kiosk that greets the person and refuses a second punch with an "Already recorded" message. A test mode lets it run beside the live system before it records anything.</p>
+          <div class="facts">
+            <div><b>5</b><span>guided poses per enrolment, each quality-scored</span></div>
+            <div><b>1 tap</b><span>to retake any pose without starting over</span></div>
+            <div><b>Duplicate guard</b><span>second punch is refused with the time of the first</span></div>
+            <div><b>Test mode</b><span>proves accuracy before attendance goes live</span></div>
+          </div>
+          <div class="tags"><span class="tag">Computer vision</span><span class="tag">Kiosk UI</span><span class="tag">Enrolment flow</span><span class="tag">Anti-proxy attendance</span></div>
+        </div>
+        <div class="gal" data-gal>
+          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Guided enrolment</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img data-main src="face-enrol.webp" alt="Face enrolment with five guided poses"></button><em class="red" data-red>Staff ID redacted</em></figure>
+          <div class="thumbs">
+            <button type="button" aria-pressed="true" data-src="face-enrol.webp" data-cap="Guided enrolment" data-red="Staff ID redacted"><img src="face-enrol.webp" alt=""><span>Guided enrolment</span></button>
+            <button type="button" aria-pressed="false" data-src="face-kiosk.webp" data-cap="Kiosk, duplicate punch refused" data-red="Bystander blurred"><img src="face-kiosk.webp" alt=""><span>Kiosk mode</span></button>
           </div>
         </div>
       </div>
@@ -401,6 +440,25 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         </div>
       </div>
     </article>
+  </div>
+</section>
+
+<section id="ai">
+  <div class="w">
+    <div class="sec-head">
+      <div><span class="mono">AI and automation</span><h2 style="margin-top:12px">Workflows that think, with people in the loop</h2></div>
+      <p>I design the whole chain: the prompts, the model calls, the checks and the hand-off to a person. Two real pipelines below, then where the same thinking shows up in my products.</p>
+    </div>
+    <div class="flow"><svg viewBox="0 0 1000 150" role="img" aria-label="AI commercial pipeline from brief to delivered film"><defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="fa"/></marker></defs><g class="fn"><rect x="10" y="36" width="150" height="76" rx="12"/><text x="24" y="70">Brief</text><text class="sub" x="24" y="92">Product + story</text></g><path class="fl" d="M160,74 L174,74" marker-end="url(#ar)"/><g class="fn hot"><rect x="176" y="36" width="150" height="76" rx="12"/><text x="190" y="70">Keyframes</text><text class="sub" x="190" y="92">Image prompts</text></g><path class="fl" d="M326,74 L340,74" marker-end="url(#ar)"/><g class="fn"><rect x="342" y="36" width="150" height="76" rx="12"/><text x="356" y="70">Anchor frames</text><text class="sub" x="356" y="92">Approve look</text></g><path class="fl" d="M492,74 L506,74" marker-end="url(#ar)"/><g class="fn hot"><rect x="508" y="36" width="150" height="76" rx="12"/><text x="522" y="70">Video clips</text><text class="sub" x="522" y="92">Motion prompts</text></g><path class="fl" d="M658,74 L672,74" marker-end="url(#ar)"/><g class="fn"><rect x="674" y="36" width="150" height="76" rx="12"/><text x="688" y="70">Edit</text><text class="sub" x="688" y="92">Assemble + grade</text></g><path class="fl" d="M824,74 L838,74" marker-end="url(#ar)"/><g class="fn"><rect x="840" y="36" width="150" height="76" rx="12"/><text x="854" y="70">Delivered</text><text class="sub" x="854" y="92">Ad ready</text></g><text class="sub" x="10" y="22" style="fill:var(--accent);font:500 11px var(--mono);letter-spacing:.1em">AI COMMERCIAL PIPELINE</text></svg><p class="cap">Keyframe-anchored prompting: every video clip starts from an approved still, so the product looks the same in every shot.</p></div>
+    <div class="flow"><svg viewBox="0 0 1000 150" role="img" aria-label="Service diagnosis workflow with human approval"><defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="fa"/></marker></defs><g class="fn"><rect x="10" y="36" width="150" height="76" rx="12"/><text x="24" y="70">Complaint</text><text class="sub" x="24" y="92">Customer form</text></g><path class="fl" d="M160,74 L174,74" marker-end="url(#ar2)"/><g class="fn"><rect x="176" y="36" width="150" height="76" rx="12"/><text x="190" y="70">Context</text><text class="sub" x="190" y="92">Model + symptoms</text></g><path class="fl" d="M326,74 L340,74" marker-end="url(#ar2)"/><g class="fn hot"><rect x="342" y="36" width="150" height="76" rx="12"/><text x="356" y="70">AI diagnosis</text><text class="sub" x="356" y="92">Claude API</text></g><path class="fl" d="M492,74 L506,74" marker-end="url(#ar2)"/><g class="fn hot"><rect x="508" y="36" width="150" height="76" rx="12"/><text x="522" y="70">Confidence</text><text class="sub" x="522" y="92">Fault + parts</text></g><path class="fl" d="M658,74 L672,74" marker-end="url(#ar2)"/><g class="fn"><rect x="674" y="36" width="150" height="76" rx="12"/><text x="688" y="70">Technician</text><text class="sub" x="688" y="92">Confirms on site</text></g><path class="fl" d="M824,74 L838,74" marker-end="url(#ar2)"/><g class="fn"><rect x="840" y="36" width="150" height="76" rx="12"/><text x="854" y="70">Job card</text><text class="sub" x="854" y="92">Tools + parts</text></g><text class="sub" x="10" y="22" style="fill:var(--accent);font:500 11px var(--mono);letter-spacing:.1em">AI-ASSISTED SERVICE DIAGNOSIS</text></svg><p class="cap">The model suggests, the technician decides. Confidence is shown on screen so nobody trusts a weak guess.</p></div>
+    <div class="grid3">
+      <div class="card"><h4>AI diagnosis in the Service Portal</h4><p>Reads the model, symptoms and history, then suggests the likely fault with a confidence meter and the tools and parts to bring. It also writes the monthly service report.</p><div class="tags"><span class="tag">Claude API</span><span class="tag">Prompt design</span></div></div>
+      <div class="card"><h4>AI summaries for HR</h4><p>One tap turns the day's attendance into a plain-language summary and flags the people and departments that need attention.</p><div class="tags"><span class="tag">LLM summary</span><span class="tag">HR analytics</span></div></div>
+      <div class="card"><h4>Kitchen material visualiser</h4><p>Clients pick a finish and see it in a real kitchen. Built on the Gemini API for a Karachi interiors studio.</p><div class="tags"><span class="tag">Gemini API</span><span class="tag">Image generation</span></div></div>
+      <div class="card"><h4>AI commercial production</h4><p>Product films made with Nano Banana Pro keyframes and Google Flow with Veo 3.1 clips, with a written guide so anyone on the team can repeat it.</p><div class="tags"><span class="tag">Nano Banana Pro</span><span class="tag">Veo 3.1</span><span class="tag">Playbook</span></div></div>
+      <div class="card"><h4>Outreach automation</h4><p>A Google Apps Script system that sends cold outreach for my software house and tracks every follow-up in a sheet, so no lead goes quiet.</p><div class="tags"><span class="tag">Apps Script</span><span class="tag">Sheets</span></div></div>
+      <div class="card"><h4>Custom bots and AI strategy</h4><p>I build complete bots and AI workflows for businesses, and write the plan that decides where AI belongs and where it does not. Ask for a walkthrough.</p><div class="tags"><span class="tag">Bots</span><span class="tag">Workflow design</span><span class="tag">Strategy</span></div></div>
+    </div>
   </div>
 </section>
 
