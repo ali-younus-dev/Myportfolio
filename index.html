@@ -2,726 +2,133 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Ali Younus · Full-stack developer and AI builder</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-<style>
-/* Layout: a dark "systems dossier". Hero with tilted product frames, then one case file per platform, each with a screenshot gallery. */
-:root{
-  --bg:#090b10; --bg2:#0e1218; --surface:#131822; --line:#232b39;
-  --ink:#eef1f6; --dim:#97a3b6; --accent:#ffb23e; --accent-ink:#1b1204; --cool:#46d6b4;
-  --shadow:0 30px 80px -30px rgba(0,0,0,.8);
-  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
-  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
-  color-scheme:dark;
-}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
-  --bg:#eef1f6; --bg2:#e6eaf1; --surface:#ffffff; --line:#d3dae5;
-  --ink:#0d1117; --dim:#556275; --accent:#b85f00; --accent-ink:#ffffff; --cool:#0b8a70;
-  --shadow:0 30px 70px -35px rgba(20,30,50,.45); color-scheme:light}}
-:root[data-theme="light"]{
-  --bg:#eef1f6; --bg2:#e6eaf1; --surface:#ffffff; --line:#d3dae5;
-  --ink:#0d1117; --dim:#556275; --accent:#b85f00; --accent-ink:#ffffff; --cool:#0b8a70;
-  --shadow:0 30px 70px -35px rgba(20,30,50,.45); color-scheme:light}
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
-a{color:inherit}
-.w{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
-h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.02em;line-height:1.02}
-p{margin:0}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-
-/* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav .w{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
-.mark{font:800 20px var(--display);text-decoration:none;display:flex;align-items:center;gap:10px}
-.mark i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--accent);color:var(--accent-ink);font-style:normal;font-size:13px}
-.nav nav{display:flex;gap:22px;font-size:14px}
-.nav nav a{text-decoration:none;color:var(--dim)}
-.nav nav a:hover{color:var(--ink)}
-@media(max-width:640px){.nav nav a:nth-child(n+3){display:none}}
-
-/* hero */
-.hero{padding-block:72px 40px;background:radial-gradient(900px 420px at 80% -10%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center}
-.eyebrow{display:inline-flex;gap:10px;align-items:center;margin-bottom:22px}
-.eyebrow b{width:8px;height:8px;border-radius:50%;background:var(--cool);box-shadow:0 0 0 4px color-mix(in srgb,var(--cool) 25%,transparent)}
-.hero h1{font-size:clamp(44px,7vw,92px);font-weight:800}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.lede{font-size:clamp(17px,2vw,20px);color:var(--dim);max-width:34em;margin-top:24px}
-.lede strong{color:var(--ink);font-weight:500}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:transparent}
-.btn.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.btn:hover{transform:translateY(-1px)}
-
-.stack{position:relative;height:440px;perspective:1600px}
-.stack .fr{position:absolute;width:78%;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.fr .bar{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--bg2)}
-.fr .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.fr .bar span{margin-left:8px;font:500 11px var(--mono);color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fr img{width:100%;aspect-ratio:1600/740;object-fit:cover;object-position:top left}
-.stack .a{left:0;top:0;transform:rotateY(14deg) rotateX(4deg) translateZ(0)}
-.stack .b{right:0;top:130px;transform:rotateY(-10deg) rotateX(3deg);z-index:2}
-.stack .c{left:12%;top:268px;width:62%;transform:rotateY(8deg) rotateX(2deg);z-index:3}
-.stack:hover .a{transform:rotateY(8deg) rotateX(2deg) translate(-6px,-6px)}
-.stack:hover .b{transform:rotateY(-5deg) rotateX(1deg) translate(6px,0)}
-.stamp{position:absolute;right:2%;top:-8px;z-index:5;transform:rotate(6deg);border:2px solid var(--accent);color:var(--accent);padding:8px 12px;border-radius:6px;font:500 11px/1.35 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--bg);text-align:center}
-@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.stack{height:360px;margin-top:16px}.stack .fr{width:84%}.stack .b{top:100px}.stack .c{top:210px;width:70%}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
-
-/* stat strip */
-.strip{margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
-.strip div{padding:22px 22px;border-right:1px solid var(--line)}
-.strip div:last-child{border-right:0}
-.strip b{display:block;font:800 clamp(28px,3.4vw,44px)/1 var(--display);letter-spacing:-.03em}
-.strip span{display:block;margin-top:8px;font-size:13px;color:var(--dim);line-height:1.35}
-@media(max-width:800px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip div{border-bottom:1px solid var(--line)}.strip div:nth-child(2n){border-right:0}.strip div:last-child{grid-column:1/-1;border-bottom:0}}
-
-/* sections */
-section{padding-block:96px 0}
-.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:40px;align-items:end;margin-bottom:48px}
-.sec-head h2{font-size:clamp(34px,5vw,60px);font-weight:800}
-.sec-head p{color:var(--dim);font-size:18px;max-width:36em}
-@media(max-width:800px){.sec-head{grid-template-columns:1fr;gap:16px}}
-
-/* case files */
-.case{border-top:1px solid var(--line);padding-block:56px}
-.case:first-of-type{border-top:0;padding-top:0}
-.case-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:48px}
-.case h3{font-size:clamp(30px,4vw,48px);font-weight:800;margin:10px 0 16px}
-.case .role{color:var(--dim);font-size:15px}
-.case .story{color:var(--dim);margin-bottom:14px}
-.case .story strong{color:var(--ink);font-weight:500}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.tag{font:500 12px var(--mono);padding:5px 10px;border-radius:6px;border:1px solid var(--line);color:var(--dim);background:var(--surface)}
-.live{display:inline-flex;align-items:center;gap:8px}
-.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cool)}
-.live.soon::before{background:var(--accent)}
-.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:26px}
-.facts div{background:var(--surface);padding:16px 18px}
-.facts b{display:block;font:800 26px/1.05 var(--display);letter-spacing:-.02em}
-.facts span{font-size:13px;color:var(--dim);line-height:1.35;display:block;margin-top:5px}
-@media(max-width:900px){.case-top{grid-template-columns:1fr;gap:28px}}
-
-.gal{min-width:0}
-.shot{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
-.shot .bar{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg2)}
-.shot .bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
-.shot .bar span{margin-left:8px;font:500 12px var(--mono);color:var(--dim)}
-.shot .view{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
-.shot .view img{width:100%;height:auto}
-.red{position:absolute;right:12px;bottom:12px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--bg);color:var(--accent);border:1px solid var(--accent);padding:5px 9px;border-radius:5px}
-.thumbs{display:flex;gap:10px;margin-top:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
-.thumbs button{flex:0 0 auto;width:132px;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);color:var(--dim);cursor:pointer;text-align:left;opacity:.72;font:inherit}
-.thumbs button img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:top left}
-.thumbs button span{display:block;padding:7px 9px;font-size:12px;line-height:1.25}
-.thumbs button[aria-pressed="true"]{opacity:1;border-color:var(--accent);color:var(--ink)}
-.thumbs button:hover{opacity:1}
-.phone-row{display:flex;gap:20px;align-items:flex-start;margin-top:18px}
-.phone{flex:0 0 auto;width:130px;border:5px solid var(--line);border-radius:22px;overflow:hidden;background:#000}
-.phone img{width:100%}
-.phone-row p{font-size:14px;color:var(--dim)}
-
-/* also shipped */
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.card{padding:26px;border:1px solid var(--line);border-radius:16px;background:var(--surface);display:flex;flex-direction:column;gap:12px}
-.card h4{font:700 22px/1.1 var(--display);margin:0;letter-spacing:-.01em}
-.card p{color:var(--dim);font-size:15px}
-.card .tags{margin-top:auto;padding-top:6px}
-@media(max-width:900px){.grid3{grid-template-columns:1fr}}
-
-/* war stories */
-.stories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.story-c{padding:28px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(180deg,var(--surface),var(--bg2))}
-.story-c .mono{color:var(--accent)}
-.story-c h4{font:700 24px/1.15 var(--display);margin:10px 0 12px;letter-spacing:-.01em;text-wrap:balance}
-.story-c p{color:var(--dim);font-size:15px}
-.story-c p + p{margin-top:8px}
-.story-c p b{color:var(--ink);font-weight:500}
-@media(max-width:800px){.stories{grid-template-columns:1fr}}
-
-/* stack list */
-.skills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.skills div{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
-.skills h5{margin:0 0 12px;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.skills ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}
-.skills li{color:var(--ink)}
-.skills li small{color:var(--dim);font-size:13px}
-@media(max-width:1000px){.skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.skills{grid-template-columns:1fr}}
-
-/* beyond code */
-.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.two .card{height:100%}
-@media(max-width:800px){.two{grid-template-columns:1fr}}
-.brands{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-
-/* contact */
-.contact{margin-top:96px;padding-block:80px;background:var(--accent);color:var(--accent-ink)}
-.contact h2{font-size:clamp(38px,6.4vw,84px);font-weight:800;max-width:12em}
-.contact p{margin-top:20px;max-width:34em;font-size:18px;opacity:.88}
-.contact .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.contact .pill{padding:13px 20px;border-radius:999px;border:1.5px solid currentColor;font-weight:600;font-size:15px;user-select:all}
-footer{padding-block:28px}
-footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-/* lightbox */
-.lb{position:fixed;inset:0;z-index:50;display:none;background:rgba(5,7,10,.92);padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));align-items:center;justify-content:center;flex-direction:column;gap:14px;cursor:zoom-out}
-.lb.on{display:flex}
-.lb img{max-width:100%;max-height:calc(100% - 50px);border-radius:10px;border:1px solid #2a3342}
-.lb p{color:#c9d2e0;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;text-align:center}
-
-/* ai section */
-.flow{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:22px;overflow-x:auto;margin-bottom:16px}
-.flow svg{display:block;min-width:760px;width:100%;height:auto}
-.flow .cap{margin-top:12px;font-size:13px;color:var(--dim)}
-.fn rect{fill:var(--bg2);stroke:var(--line);stroke-width:1.5}
-.fn.hot rect{stroke:var(--accent);fill:color-mix(in srgb,var(--accent) 12%,var(--bg2))}
-.fn text{fill:var(--ink);font:600 14px var(--display)}
-.fn .sub{fill:var(--dim);font:500 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase}
-.fl{stroke:var(--dim);stroke-width:1.5;fill:none}
-.fa{fill:var(--dim)}
-
-.rot{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin:10px 0 22px;min-height:34px}
-.rot .rl{font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-.rot #rw{font:700 clamp(20px,2.4vw,27px)/1.1 var(--display);color:var(--cool);display:inline-block;transition:opacity .35s ease,transform .35s ease}
-.rot #rw.out{opacity:0;transform:translateY(8px)}
-.cap-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.cap{position:relative;display:flex;flex-direction:column;gap:10px;padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--surface);text-decoration:none;color:inherit;transition:transform .2s ease,border-color .2s ease}
-.cap:hover{transform:translateY(-3px);border-color:var(--accent)}
-.cap .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent)}
-.cap .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.cap h4{font:700 19px/1.15 var(--display);margin:6px 0 0;letter-spacing:-.01em}
-.cap p{color:var(--dim);font-size:14.5px;line-height:1.45;margin:0}
-.cap .go{margin-top:auto;padding-top:6px;font:500 11.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.cap .n{position:absolute;right:18px;top:18px;font:500 11px var(--mono);color:var(--dim);letter-spacing:.1em}
-@media(max-width:1000px){.cap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.cap-grid{grid-template-columns:minmax(0,1fr)}}
-@media(prefers-reduced-motion:reduce){.rot #rw{transition:none}.cap{transition:none}}
-</style>
-<meta name="description" content="Ali Younus: full-stack developer and AI builder from Karachi. Custom platforms, AI bots and automation, and websites for clients in the UK, Canada and worldwide.">
-<meta name="theme-color" content="#090b10">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d17">
+<title>Ali Younus — Full-stack developer &amp; AI builder</title>
+<meta name="description" content="Ali Younus: full-stack developer and AI builder from Karachi. Custom platforms, AI bots, automation, face recognition and websites for clients in the UK, Canada and worldwide.">
 <link rel="canonical" href="https://ali-younus-dev.github.io/Myportfolio/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ffb23e'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='800' font-size='30' text-anchor='middle' fill='%23090b10'%3EAY%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Ali Younus · Full-stack developer and AI builder">
-<meta property="og:description" content="Ali Younus: full-stack developer and AI builder from Karachi. Custom platforms, AI bots and automation, and websites for clients in the UK, Canada and worldwide.">
 <meta property="og:url" content="https://ali-younus-dev.github.io/Myportfolio/">
+<meta property="og:site_name" content="Ali Younus">
+<meta property="og:title" content="Ali Younus — Creative developer & AI builder">
+<meta property="og:description" content="From the first spark to the final deploy. Explore my universe of software, AI and digital experiences.">
 <meta property="og:image" content="https://ali-younus-dev.github.io/Myportfolio/og.jpg">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ali Younus — A little code. A lot of impact.">
+<meta name="twitter:description" content="Custom platforms, AI bots, automation, face recognition and websites. You dream it, I build it.">
 <meta name="twitter:image" content="https://ali-younus-dev.github.io/Myportfolio/og.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ali Younus","jobTitle":"Full-stack developer and AI builder","address":{"@type":"PostalAddress","addressLocality":"Karachi","addressCountry":"PK"},"url":"https://ali-younus-dev.github.io/Myportfolio/","sameAs":["https://www.linkedin.com/in/ali-younus-5b9413284"],"knowsAbout":["PHP","MySQL","Node.js","PostgreSQL","React","AI workflows"]}</script>
-<style>body{margin:0}[hidden]{display:none!important}</style>
-<script>
-/* Picture finder: if a picture is not at its path, try the other layout (main folder or img/ folder). */
-document.addEventListener('error',function(e){var t=e.target;if(!t||t.tagName!=='IMG')return;var s=t.getAttribute('src')||'';if(t.dataset.retried===s)return;var f=s.split('/').pop().split('?')[0];var n=/(^|\/)img\//.test(s)?f:'img/'+f;t.dataset.retried=n;t.src=n},true);
-</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2371dfff'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='29' font-weight='bold' text-anchor='middle' fill='%23080d17'%3Eay%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="enhance.css">
+<script src="projects.js" defer></script>
+<script src="app.js" defer></script>
+<script src="enhance.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","name":"Ali Younus","jobTitle":"Full-stack developer and AI builder","url":"https://ali-younus-dev.github.io/Myportfolio/","address":{"@type":"PostalAddress","addressLocality":"Karachi","addressCountry":"PK"},"sameAs":["https://www.linkedin.com/in/ali-younus-5b9413284"],"knowsAbout":["Full-stack web development","AI bots and automation","Face recognition","ERP and CRM systems","Website design and SEO"]},{"@type":"ProfessionalService","name":"Trex Software House","description":"Custom software, AI bots, automation and websites.","founder":{"@type":"Person","name":"Ali Younus"},"areaServed":["PK","CA","GB"]}]}</script>
 </head>
 <body>
-<header class="nav">
-  <div class="w">
-    <a class="mark" href="#top"><i>AY</i>Ali Younus</a>
-    <nav aria-label="Sections">
-      <a href="#build">Capabilities</a><a href="#work">Platforms</a><a href="#ai">AI</a><a href="#websites">Websites</a><a href="#depth">Engineering</a><a href="#stack">Stack</a><a href="#beyond">Beyond code</a><a href="#contact">Contact</a>
-    </nav>
-  </div>
+<a class="skip-link" href="#work">Skip to projects</a>
+<div class="progress" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+<header class="header">
+  <a class="wordmark" href="#top" aria-label="Ali Younus home"><span class="monogram">ay<span>✳</span></span><span>Ali Younus<span class="wordmark-sub">DEVELOPER & AI BUILDER</span></span></a>
+  <nav aria-label="Main navigation"><a class="nav-link extra" href="#capabilities">What I build</a><a class="nav-link" href="#work">The work</a><a class="nav-link extra" href="#process">How I work</a><a class="nav-link" href="#about">The human</a><a class="nav-contact" href="#contact">Let’s talk <span>↗</span></a></nav>
 </header>
-
-<main id="top">
-<div class="hero">
-  <div class="w">
-    <div class="hero-grid">
-      <div>
-        <div class="eyebrow mono"><b></b>Custom software · AI · Automation</div>
-        <h1 style="font-size:clamp(46px,5.6vw,76px)">You dream it.<br>I <em>build it.</em></h1>
-        <div class="rot" aria-live="off"><span class="rl">I have built</span><span id="rw">a full ERP</span></div>
-<script>
-(function(){var w=document.getElementById('rw');if(!w)return;var L=['a full ERP','an AI finance analyst','a face-recognition gate','a field-service platform','a VoIP call centre','an offline warehouse app','a research scraper','an attendance and HR system','an AI product-film pipeline','a quote basket that sends to WhatsApp','search growth for a brand'],i=0;
-if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-setInterval(function(){w.classList.add('out');setTimeout(function(){i=(i+1)%L.length;w.textContent=L[i];w.classList.remove('out')},360)},2300)})();
-</script>
-        <p class="lede"><strong>Custom platforms, AI bots, automation, face recognition and websites.</strong> Tell me what you have in mind and I design it, build it and ship it, from the database to the screen, with no hand-offs.</p>
-        <div class="cta">
-          <a class="btn pri" href="#work">See the work</a>
-          <a class="btn" href="#contact">Get in touch</a>
-        </div>
-        <p class="mono" style="margin:22px 0 0;font-size:12.5px;letter-spacing:.06em;color:var(--dim)">Web apps · ERP and CRM · AI bots and workflows · Automation · Face recognition · PHP · Node.js · React · PostgreSQL · MySQL</p>
-      </div>
-      <div class="stack" aria-hidden="true">
-        <div class="stamp">Demo builds<br>sample data</div>
-        <div class="fr a"><div class="bar"><i></i><i></i><i></i><span>Service desk dashboard</span></div><img src="svc-dashboard.webp" alt=""></div>
-        <div class="fr b"><div class="bar"><i></i><i></i><i></i><span>Live shift board</span></div><img src="ams-live.webp" alt=""></div>
-        <div class="fr c"><div class="bar"><i></i><i></i><i></i><span>Face-recognition enrolment</span></div><img src="face-enrol.webp" alt=""></div>
-      </div>
-    </div>
-
-    <div class="strip">
-      <div><b>100+</b><span>projects delivered, from landing pages to full ERPs</span></div>
-      <div><b>40+</b><span>clients served</span></div>
-      <div><b>6</b><span>flagship platforms, each built end to end</span></div>
-      <div><b>1</b><span>engineer from database to deployment, so nothing is lost in hand-offs</span></div>
-    </div>
+<main>
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <canvas class="constellation" id="constellation" aria-hidden="true"></canvas>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="status-dot"></span> INDEPENDENT MIND. INFINITE POSSIBILITIES.</p>
+    <h1 id="hero-title">A little code.<br>A <span class="accent-word">lot of impact<span class="period">.</span><svg viewBox="0 0 480 28" aria-hidden="true"><path d="M4 20 Q230 -4 472 13 M90 24 Q300 7 410 20"/></svg></span></h1>
+    <p class="rotator"><span class="lead">I have built</span><span class="word" id="rotator-word" aria-hidden="true">a full ERP</span><span class="caret" aria-hidden="true"></span><span class="sr-only">ERP systems, AI finance analysts, face-recognition gates, field-service platforms, AI material visualisers, VoIP call centres, offline warehouse apps, research scrapers, attendance and HR systems, AI product films, bilingual national websites and guided quote funnels.</span></p>
+    <p class="hero-intro">I’m Ali. I turn ambitious ideas into<br class="desktop-break"> software that does something <em>extraordinary.</em></p>
+    <div class="hero-actions"><a class="button button-accent" href="#work" id="launch">See what I build <span>↗</span></a><span class="hero-aside">Full-stack development.<br>AI. A little bit of obsession.</span></div>
   </div>
+  <div class="workstation" id="workstation" aria-label="Animated laptop turning code into real projects">
+    <div class="studio-light" aria-hidden="true"></div>
+    <div class="studio-grid" aria-hidden="true"></div>
+    <div class="build-chapters" aria-label="Build animation stages"><span class="chapter active" data-chapter="code">01 <b>THE CODE</b></span><i>→</i><span class="chapter" data-chapter="build">02 <b>THE BUILD</b></span><i>→</i><span class="chapter" data-chapter="live">03 <b>THE REAL THING</b></span></div>
+    <div class="machine-position"><div class="machine-float"><div class="laptop" id="laptop">
+      <div class="laptop-lid"><div class="webcam" aria-hidden="true"></div>
+        <div class="laptop-display">
+          <div class="laptop-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span id="screen-filename">service-portal.js</span><span class="screen-branch">main ↗</span></div>
+          <div class="screen-content">
+            <div class="code-view" aria-hidden="true"><div class="editor-sidebar">⌘<br>⧉<br>⌕<br>⑂<br>◇</div><div class="typed-code" id="typed-code"></div><div class="editor-terminal"><span>›</span> <span id="terminal-output">Ready to create something.</span><b class="terminal-caret"></b></div></div>
+            <div class="build-overlay" aria-hidden="true"><div class="build-symbol">&lt;/&gt;</div><span>MAKING IT REAL</span><div class="build-meter"><i></i></div></div>
+            <button class="product-view" id="product-view" data-project="service" aria-label="Explore the project on the laptop screen"><img id="laptop-project-image" src="svc-dashboard.webp" alt="Service Portal demo dashboard" width="1600" height="800"><span class="screen-open">Explore this build ↗</span></button>
+          </div>
+          <div class="screen-status"><span><i></i> <span id="screen-status-text">Writing the first lines</span></span><span>ALI YOUNUS / BUILT END TO END</span></div>
+        </div>
+        <div class="laptop-chin" aria-hidden="true">a y <span>✳</span></div>
+      </div>
+      <div class="laptop-deck" aria-hidden="true"><div class="keyboard"><div></div><div></div><div></div><div></div><div class="space-row"></div></div><div class="trackpad"></div></div>
+      <div class="laptop-edge" aria-hidden="true"><span></span></div>
+    </div></div></div>
+    <button class="hero-mobile" id="hero-mobile" type="button" data-project="service" data-view="mobile" aria-label="Explore Service Portal mobile views"><span class="phone-crop"><img src="svc-tech.webp" alt="Service Portal mobile experience — demo data" width="1600" height="800"></span><span class="hero-mobile-label">BUILT FOR MOBILE ↗</span></button>
+    <div class="build-caption"><div><span class="build-kicker" id="build-kicker">FROM AN IDEA TO A WORKING PRODUCT</span><h3 id="build-project-title">Service Portal</h3><p id="build-project-description">A whole business. One connected system.</p></div><button id="next-build" type="button" aria-label="Show next project on laptop">↗</button></div>
+    <div class="build-controls"><div class="build-pagination" role="group" aria-label="Laptop featured projects"><button class="selected" data-build="0" aria-label="Show Service Portal" aria-pressed="true"><span></span></button><button data-build="1" aria-label="Show Amaza Homes" aria-pressed="false"><span></span></button><button data-build="2" aria-label="Show Face Recognition" aria-pressed="false"><span></span></button></div><button id="replay-build" type="button">↻ Replay the build</button></div>
+  </div>
+  <div class="hero-bottom"><a href="#work" class="scroll-hint"><span>↓</span> SCROLL TO DISCOVER</a><span class="location"><span class="status-dot"></span> KARACHI, PK <span id="local-time"></span></span><button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false">Ⅱ Pause motion</button></div>
+</section>
+<div class="manifesto-strip" aria-label="100 plus projects, 40 plus clients, one engineer from idea to launch"><span><b class="count" data-to="100" data-suffix="+">100+</b> <small>PROJECTS DELIVERED</small></span><i>✳</i><span><b class="count" data-to="40" data-suffix="+">40+</b> <small>CLIENTS SERVED</small></span><i>✳</i><span>ONE <small>MIND. END TO END.</small></span><i>✳</i><span>ZERO <small>HALF-MEASURES.</small></span></div>
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-row big" id="ribbon-a"></div>
+  <div class="ribbon-row small reverse" id="ribbon-b"></div>
 </div>
-
-<section id="build">
-  <div class="w">
-    <div class="sec-head">
-      <div><span class="mono">What I can build</span><h2 style="margin-top:12px">If it runs on software, I build it</h2></div>
-      <p>Twelve kinds of work I deliver, each linked to real examples further down the page.</p>
-    </div>
-    <div class="cap-grid"><a class="cap" href="#work"><span class="n">01</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><h4>Business platforms and ERP</h4><p>CRM, scheduling, inventory, roles and approvals, built around how your team really works.</p><span class="go">See it →</span></a><a class="cap" href="#ai"><span class="n">02</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/><circle cx="12" cy="12" r="2.5"/></svg></span><h4>AI bots and workflows</h4><p>Assistants, fault diagnosis, report writers and AI product-film pipelines, always with a person in the loop.</p><span class="go">See it →</span></a><a class="cap" href="#ai"><span class="n">03</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0114-5.3M20 12a8 8 0 01-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></span><h4>Automation</h4><p>Outreach, reconciliation, report generation and stock audits that run without anyone babysitting them.</p><span class="go">See it →</span></a><a class="cap" href="#face"><span class="n">04</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3"/><circle cx="12" cy="11" r="3"/><path d="M7.5 18c1-3 8-3 9 0"/></svg></span><h4>Face recognition</h4><p>Guided enrolment, a gate kiosk and a duplicate-punch guard, so nobody clocks in for anyone else.</p><span class="go">See it →</span></a><a class="cap" href="#websites"><span class="n">05</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg></span><h4>Websites and e-commerce</h4><p>Fast hand-built sites, quote baskets, SEO and staff-editable back ends.</p><span class="go">See it →</span></a><a class="cap" href="#more"><span class="n">06</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></span><h4>Mobile and offline apps</h4><p>Installable web apps that scan barcodes and keep working with no signal.</p><span class="go">See it →</span></a><a class="cap" href="#more"><span class="n">07</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12"/></svg></span><h4>APIs and integrations</h4><p>Token-secured APIs and data bridges that make separate systems act as one.</p><span class="go">See it →</span></a><a class="cap" href="#work"><span class="n">08</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></span><h4>Dashboards and reporting</h4><p>Live boards, forecasts, scorecards and one-click Excel and PDF exports.</p><span class="go">See it →</span></a><a class="cap" href="#more"><span class="n">09</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A15 15 0 013 6a2 2 0 012-2z"/></svg></span><h4>Call centres and networks</h4><p>FreePBX and Asterisk call centres with screen-pops, plus network filtering and governance.</p><span class="go">See it →</span></a><a class="cap" href="#ai"><span class="n">10</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></span><h4>Research and scraping tools</h4><p>A terminal tool that searches the web, extracts details and shows its sources.</p><span class="go">See it →</span></a><a class="cap" href="#stack"><span class="n">11</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 010-8 5 5 0 019.6-1A4.5 4.5 0 0117 18H7z"/></svg></span><h4>Servers and deployment</h4><p>Linux servers with Nginx and PM2, shared hosting and cloud, deployed and kept running.</p><span class="go">See it →</span></a><a class="cap" href="#beyond"><span class="n">12</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 4 7-8M15 8h5v5"/></svg></span><h4>Brand growth and SEO</h4><p>Websites, search ranking, Instagram growth and paid ads, from no online presence to a working one.</p><span class="go">See it →</span></a></div>
-  </div>
+<section class="capabilities section-wrap" id="capabilities" aria-labelledby="cap-title">
+  <div class="section-top reveal"><p class="eyebrow">01 / WHAT I BUILD</p><span class="small-note">TWELVE KINDS OF WORK. ONE PERSON.</span></div>
+  <div class="section-heading reveal"><h2 id="cap-title">If it runs on software,<br><span class="muted">I can build it.</span></h2><p>Tell me what you have in mind. I design it, build it and ship it, from the database to the screen, with no hand-offs.</p></div>
+  <div class="cap-grid"><a class="cap reveal" href="#work" data-category-link="Systems"><span class="n">01</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><h3>Business platforms and ERP</h3><p>CRM, scheduling, inventory, roles and approvals, built around how your team really works.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#work" data-category-link="AI &amp; automation"><span class="n">02</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/><circle cx="12" cy="12" r="2.5"/></svg></span><h3>AI bots and workflows</h3><p>Assistants, fault diagnosis, report writers and AI product-film pipelines, always with a person in the loop.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#more"><span class="n">03</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0114-5.3M20 12a8 8 0 01-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></span><h3>Automation</h3><p>Outreach, reconciliation, report generation and stock audits that run without anyone babysitting them.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#work" data-goto="face" data-category-link="All"><span class="n">04</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3"/><circle cx="12" cy="11" r="3"/><path d="M7.5 18c1-3 8-3 9 0"/></svg></span><h3>Face recognition</h3><p>Guided enrolment, a gate kiosk and a duplicate-punch guard, so nobody clocks in for anyone else.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#work" data-category-link="Websites"><span class="n">05</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg></span><h3>Websites and e-commerce</h3><p>Fast hand-built sites, quote baskets, SEO and staff-editable back ends for brands in Canada, Pakistan and beyond.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#more"><span class="n">06</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></span><h3>Mobile and offline apps</h3><p>Installable web apps that scan barcodes and keep working with no signal.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#more"><span class="n">07</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12"/></svg></span><h3>APIs and integrations</h3><p>Token-secured APIs and data bridges that make separate systems act as one.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#work" data-category-link="Systems"><span class="n">08</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></span><h3>Dashboards and reporting</h3><p>Live boards, forecasts, scorecards and one-click Excel and PDF exports.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#more"><span class="n">09</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A15 15 0 013 6a2 2 0 012-2z"/></svg></span><h3>Call centres and networks</h3><p>FreePBX and Asterisk call centres with screen-pops, plus network filtering and governance.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#work" data-goto="scraper" data-category-link="All"><span class="n">10</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></span><h3>Research and scraping tools</h3><p>A terminal tool that searches the web, extracts the details and shows its sources.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#stack"><span class="n">11</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 010-8 5 5 0 019.6-1A4.5 4.5 0 0117 18H7z"/></svg></span><h3>Servers and deployment</h3><p>Linux servers with Nginx and PM2, shared hosting and cloud, deployed and kept running.</p><span class="go">See it <b>↗</b></span></a><a class="cap reveal" href="#beyond" data-open="beyond"><span class="n">12</span><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 4 7-8M15 8h5v5"/></svg></span><h3>Brand growth and SEO</h3><p>From no online presence to a working one: websites, search ranking, Instagram growth and paid ads.</p><span class="go">See it <b>↗</b></span></a></div>
 </section>
-
-<section id="work">
-  <div class="w">
-    <div class="sec-head">
-      <div><span class="mono">Selected work</span><h2 style="margin-top:12px">Complex systems in production</h2></div>
-      <p>Each one started with a manual process and a spreadsheet. The screens here are demo builds of the production systems, with invented data for a fictional metal-works company. No real names, brands or figures appear.</p>
-    </div>
-
-    <!-- SERVICE PORTAL -->
-    <article class="case" id="service">
-      <div class="case-top">
-        <div>
-          <span class="mono live">Live · production system</span>
-          <h3>Service Portal</h3>
-          <p class="role">Sole architect and developer · PHP, MySQL, vanilla JS</p>
-          <p class="story" style="margin-top:18px"><strong>The problem.</strong> Field repairs across several cities ran on calls, WhatsApp and paper. Nobody could see what was open, who owned it, or what parts were sitting in a technician's van.</p>
-          <p class="story"><strong>What I built.</strong> A complaint-to-cash platform: a six-step public request form, a call-centre desk, zone-locked admin roles, a map with route building, a technician app, a service-centre workflow, parts custody with approvals, customer tracking and ratings, and a forecasting deck for management.</p>
-          <p class="story"><strong>About the screens.</strong> A demo build of the production system, with invented data for a fictional metal-works company. No real names, brands or figures appear.</p>
-          <div class="facts">
-            <div><b>9</b><span>role types, each scoped by city zone on the server</span></div>
-            <div><b>800+</b><span>fault codes in 7 categories, searchable</span></div>
-            <div><b>8,000+</b><span>spare-part units tracked across 500+ SKUs with a full ledger</span></div>
-            <div><b>14 days</b><span>demand forecast with 95% confidence band, computed in PHP</span></div>
-          </div>
-          <div class="tags"><span class="tag">PHP 7.4</span><span class="tag">MySQL</span><span class="tag">Leaflet + OSRM</span><span class="tag">Claude API</span><span class="tag">PWA</span><span class="tag">xlsx export</span><span class="tag">QR job cards</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Service desk dashboard</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="svc-dashboard.webp" alt="Service desk dashboard with request counts, intake chart and technician workload"></button><em class="red" data-red>Live application · demo data</em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="svc-dashboard.webp" data-cap="Service desk dashboard" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="svc-dashboard.webp" alt=""><span>Service desk dashboard</span></button>
-            <button type="button" aria-pressed="false" data-src="svc-map.webp" data-cap="Dispatch map" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="svc-map.webp" alt=""><span>Dispatch map</span></button>
-            <button type="button" aria-pressed="false" data-src="svc-call.webp" data-cap="Call desk with AI diagnosis" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="svc-call.webp" alt=""><span>Call desk with AI diagnosis</span></button>
-            <button type="button" aria-pressed="false" data-src="svc-tech.webp" data-cap="Technician app" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="svc-tech.webp" alt=""><span>Technician app</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-<!-- AMS -->
-    <article class="case" id="ams">
-      <div class="case-top">
-        <div>
-          <span class="mono live">Live · production system</span>
-          <h3>Attendance &amp; HR Platform</h3>
-          <p class="role">Sole architect and developer · Node.js, PostgreSQL, React PWA</p>
-          <p class="story" style="margin-top:18px"><strong>The problem.</strong> Buddy punching, uneven leave rules between cities and month-end payroll arguments.</p>
-          <p class="story"><strong>What I built.</strong> A multi-city platform with four-layer anti-spoofing clock-in, per-location weekly-off rules, a leave balance engine, late-deduction and probation logic, field-worker tracking, executive analytics, a live operations board, and technician KPI scorecards that merge service jobs with attendance. An Arena gamification layer with a 52-item cosmetics shop turned punctuality into a game.</p>
-          <p class="story"><strong>About the screens.</strong> A demo build of the production system, with invented data for a fictional metal-works company. No real names, brands or figures appear.</p>
-          <div class="facts">
-            <div><b>100+</b><span>employees across 10 departments</span></div>
-            <div><b>Multi-city</b><span>each location with its own weekly-off and geofence rules</span></div>
-            <div><b>4-layer</b><span>anti-spoofing on every clock-in</span></div>
-            <div><b>52</b><span>unlockable cosmetics in the Arena reward shop</span></div>
-          </div>
-          <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">React PWA</span><span class="tag">Geofencing</span><span class="tag">React Native (in progress)</span></div>
-          <p class="story" style="margin-top:16px">The employee app, shown in the gallery, handles one-tap clock-in, leave requests and balances. A native React Native version is in development.</p>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Live shift board</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="ams-live.webp" alt="Live shift board showing who is on site, late and absent by department"></button><em class="red" data-red>Live application · demo data</em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="ams-live.webp" data-cap="Live shift board" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="ams-live.webp" alt=""><span>Live shift board</span></button>
-            <button type="button" aria-pressed="false" data-src="ams-analytics.webp" data-cap="Attendance analytics" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="ams-analytics.webp" alt=""><span>Attendance analytics</span></button>
-            <button type="button" aria-pressed="false" data-src="ams-employee.webp" data-cap="Employee record" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="ams-employee.webp" alt=""><span>Employee record</span></button>
-            <button type="button" aria-pressed="false" data-src="ams-mobile.webp" data-cap="Employee mobile app" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="ams-mobile.webp" alt=""><span>Employee mobile app</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- FACE RECOGNITION -->
-    <article class="case" id="face">
-      <div class="case-top">
-        <div>
-          <span class="mono live soon">Pilot · test mode</span>
-          <h3>Face-Recognition Attendance</h3>
-          <p class="role">Designed and built end to end · enrolment, kiosk and attendance link</p>
-          <p class="story" style="margin-top:18px"><strong>The problem.</strong> Card swipes and manual sign-ins let people clock in for each other.</p>
-          <p class="story"><strong>What I built.</strong> A face-recognition clock-in system: guided enrolment with five poses and a quality score for each capture, a live landmark mesh so staff see what the camera sees, and a full-screen kiosk that greets the person and refuses a second punch with an "Already recorded" message. A test mode lets it run beside the live system before it records anything.</p>
-          <p class="story"><strong>About the screens.</strong> A demo build of the production system, with invented data for a fictional metal-works company. No real names, brands or figures appear.</p>
-          <div class="facts">
-            <div><b>5</b><span>guided poses per enrolment, each quality-scored</span></div>
-            <div><b>1 tap</b><span>to retake any pose without starting over</span></div>
-            <div><b>Duplicate guard</b><span>second punch is refused with the time of the first</span></div>
-            <div><b>Test mode</b><span>proves accuracy before attendance goes live</span></div>
-          </div>
-          <div class="tags"><span class="tag">Computer vision</span><span class="tag">Kiosk UI</span><span class="tag">Enrolment flow</span><span class="tag">Anti-proxy attendance</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Guided enrolment</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="face-enrol.webp" alt="Face enrolment with five guided poses"></button><em class="red" data-red>Live application · demo data</em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="face-enrol.webp" data-cap="Guided enrolment" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="face-enrol.webp" alt=""><span>Guided enrolment</span></button>
-            <button type="button" aria-pressed="false" data-src="face-kiosk.webp" data-cap="Kiosk, duplicate punch refused" data-red="Live application · demo data"><img loading="lazy" decoding="async" src="face-kiosk.webp" alt=""><span>Kiosk mode</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- SOLAR -->
-    <article class="case" id="solar">
-      <div class="case-top">
-        <div>
-          <span class="mono live">Live · own venture</span>
-          <h3>Solar Sweep ERP</h3>
-          <p class="role">Founder-developer · PHP, MySQL</p>
-          <p class="story" style="margin-top:18px"><strong>The problem.</strong> A solar panel washing company scheduling by phone, with no view of cash or commissions.</p>
-          <p class="story"><strong>What I built.</strong> A seven-role operations platform: CRM, scheduling and reminders, a washer mobile portal, invoicing and finance, geo-locked attendance, inventory and payroll, with WhatsApp messaging that understands Pakistani phone formats.</p>
-          <div class="facts">
-            <div><b>7</b><span>user roles from owner to washer</span></div>
-            <div><b>430</b><span>active clients on the book</span></div>
-            <div><b>260+</b><span>jobs completed in a single month</span></div>
-            <div><b>9</b><span>modules from CRM to payroll</span></div>
-          </div>
-          <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">WhatsApp</span><span class="tag">Geo-attendance</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Dashboard</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="solar-dash.webp" alt="Solar Sweep dashboard"></button><em class="red" data-red>Finances redacted</em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="solar-dash.webp" data-cap="Dashboard" data-red="Finances redacted"><img loading="lazy" decoding="async" src="solar-dash.webp" alt=""><span>Dashboard</span></button>
-            <button type="button" aria-pressed="false" data-src="solar-fin.webp" data-cap="Finance and P&amp;L" data-red="Finances redacted"><img loading="lazy" decoding="async" src="solar-fin.webp" alt=""><span>Finance and P&amp;L</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </div>
+<section class="work section-wrap" id="work" aria-labelledby="work-title">
+  <div class="section-top reveal"><p class="eyebrow">02 / SELECTED WORK</p><span class="small-note">A FEW THINGS I’VE PUT INTO THE WORLD</span></div>
+  <div class="section-heading reveal"><h2 id="work-title">Small sparks.<br><span class="muted">Real-world impact.</span></h2><p>Some run businesses. Some make life easier.<br>All started with “what if?”<br><span class="project-note">Platform screens use demo or redacted data.</span></p></div>
+  <div class="filter-bar reveal"><div class="filters" role="group" aria-label="Filter projects"><button class="active" data-filter="All" aria-pressed="true">All work <sup>10</sup></button><button data-filter="Systems" aria-pressed="false">Systems <sup>03</sup></button><button data-filter="AI & automation" aria-pressed="false">AI & automation <sup>03</sup></button><button data-filter="Websites" aria-pressed="false">Websites <sup>04</sup></button></div><span class="filter-result" id="filter-result" role="status" aria-live="polite">10 selected projects</span></div>
+  <div class="projects" id="projects"></div>
+  <noscript><p>Enable JavaScript for the interactive project gallery, or message me on <a href="https://wa.me/923491979171">WhatsApp</a>.</p></noscript>
 </section>
-
-<section id="ai">
-  <div class="w">
-    <div class="sec-head">
-      <div><span class="mono">AI and automation</span><h2 style="margin-top:12px">Workflows that think, with people in the loop</h2></div>
-      <p>I design the whole chain: the prompts, the model calls, the checks and the hand-off to a person. Two real pipelines below, then where the same thinking shows up in my products.</p>
-    </div>
-    <div class="flow"><svg viewBox="0 0 1000 150" role="img" aria-label="AI commercial pipeline from brief to delivered film"><defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="fa"/></marker></defs><g class="fn"><rect x="10" y="36" width="150" height="76" rx="12"/><text x="24" y="70">Brief</text><text class="sub" x="24" y="92">Product + story</text></g><path class="fl" d="M160,74 L174,74" marker-end="url(#ar)"/><g class="fn hot"><rect x="176" y="36" width="150" height="76" rx="12"/><text x="190" y="70">Keyframes</text><text class="sub" x="190" y="92">Image prompts</text></g><path class="fl" d="M326,74 L340,74" marker-end="url(#ar)"/><g class="fn"><rect x="342" y="36" width="150" height="76" rx="12"/><text x="356" y="70">Anchor frames</text><text class="sub" x="356" y="92">Approve look</text></g><path class="fl" d="M492,74 L506,74" marker-end="url(#ar)"/><g class="fn hot"><rect x="508" y="36" width="150" height="76" rx="12"/><text x="522" y="70">Video clips</text><text class="sub" x="522" y="92">Motion prompts</text></g><path class="fl" d="M658,74 L672,74" marker-end="url(#ar)"/><g class="fn"><rect x="674" y="36" width="150" height="76" rx="12"/><text x="688" y="70">Edit</text><text class="sub" x="688" y="92">Assemble + grade</text></g><path class="fl" d="M824,74 L838,74" marker-end="url(#ar)"/><g class="fn"><rect x="840" y="36" width="150" height="76" rx="12"/><text x="854" y="70">Delivered</text><text class="sub" x="854" y="92">Ad ready</text></g><text class="sub" x="10" y="22" style="fill:var(--accent);font:500 11px var(--mono);letter-spacing:.1em">AI COMMERCIAL PIPELINE</text></svg><p class="cap">Keyframe-anchored prompting: every video clip starts from an approved still, so the product looks the same in every shot.</p></div>
-    <div class="flow"><svg viewBox="0 0 1000 150" role="img" aria-label="Service diagnosis workflow with human approval"><defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="fa"/></marker></defs><g class="fn"><rect x="10" y="36" width="150" height="76" rx="12"/><text x="24" y="70">Complaint</text><text class="sub" x="24" y="92">Customer form</text></g><path class="fl" d="M160,74 L174,74" marker-end="url(#ar2)"/><g class="fn"><rect x="176" y="36" width="150" height="76" rx="12"/><text x="190" y="70">Context</text><text class="sub" x="190" y="92">Model + symptoms</text></g><path class="fl" d="M326,74 L340,74" marker-end="url(#ar2)"/><g class="fn hot"><rect x="342" y="36" width="150" height="76" rx="12"/><text x="356" y="70">AI diagnosis</text><text class="sub" x="356" y="92">Claude API</text></g><path class="fl" d="M492,74 L506,74" marker-end="url(#ar2)"/><g class="fn hot"><rect x="508" y="36" width="150" height="76" rx="12"/><text x="522" y="70">Confidence</text><text class="sub" x="522" y="92">Fault + parts</text></g><path class="fl" d="M658,74 L672,74" marker-end="url(#ar2)"/><g class="fn"><rect x="674" y="36" width="150" height="76" rx="12"/><text x="688" y="70">Technician</text><text class="sub" x="688" y="92">Confirms on site</text></g><path class="fl" d="M824,74 L838,74" marker-end="url(#ar2)"/><g class="fn"><rect x="840" y="36" width="150" height="76" rx="12"/><text x="854" y="70">Job card</text><text class="sub" x="854" y="92">Tools + parts</text></g><text class="sub" x="10" y="22" style="fill:var(--accent);font:500 11px var(--mono);letter-spacing:.1em">AI-ASSISTED SERVICE DIAGNOSIS</text></svg><p class="cap">The model suggests, the technician decides. Confidence is shown on screen so nobody trusts a weak guess.</p></div>
-    <div class="grid3">
-      <div class="card"><h4>Finance analyst bot</h4><p>Arranges the monthly P&amp;L, explains what looks wrong in plain language and sends the important updates. Built for a client.</p><div class="tags"><span class="tag">Finance automation</span><span class="tag">Anomaly flags</span></div></div>
-      <div class="card"><h4>Terminal research scraper</h4><p>One command searches the web, follows the contact pages and prints the details it finds with the sources behind each one. Built for a client.</p><div class="tags"><span class="tag">Web scraping</span><span class="tag">CLI</span></div></div>
-      <div class="card"><h4>AI diagnosis in the Service Portal</h4><p>Reads the model, symptoms and history, then suggests the likely fault with a confidence meter and the tools and parts to bring. It also writes the monthly service report.</p><div class="tags"><span class="tag">Claude API</span><span class="tag">Prompt design</span></div></div>
-      <div class="card"><h4>AI summaries for HR</h4><p>One tap turns the day's attendance into a plain-language summary and flags the people and departments that need attention.</p><div class="tags"><span class="tag">LLM summary</span><span class="tag">HR analytics</span></div></div>
-      <div class="card"><h4>Kitchen material visualiser</h4><p>Clients pick a finish and see it in a real kitchen. Built on the Gemini API for a Karachi interiors studio.</p><div class="tags"><span class="tag">Gemini API</span><span class="tag">Image generation</span></div></div>
-      <div class="card"><h4>AI commercial production</h4><p>Product films made with Nano Banana Pro keyframes and Google Flow with Veo 3.1 clips, with a written guide so anyone on the team can repeat it.</p><div class="tags"><span class="tag">Nano Banana Pro</span><span class="tag">Veo 3.1</span><span class="tag">Playbook</span></div></div>
-      <div class="card"><h4>Outreach automation</h4><p>A Google Apps Script system that sends cold outreach for my software house and tracks every follow-up in a sheet, so no lead goes quiet.</p><div class="tags"><span class="tag">Apps Script</span><span class="tag">Sheets</span></div></div>
-      <div class="card"><h4>Custom bots and AI strategy</h4><p>I build complete bots and AI workflows for businesses, and write the plan that decides where AI belongs and where it does not. Ask for a walkthrough.</p><div class="tags"><span class="tag">Bots</span><span class="tag">Workflow design</span><span class="tag">Strategy</span></div></div>
-    </div>
-
-    <!-- FINBOT -->
-    <article class="case" id="finbot">
-      <div class="case-top">
-        <div>
-          <span class="mono live">Client build · confidential</span>
-          <h3>Finance Analyst Bot</h3>
-          <p class="role">Designed and built for a client · P&amp;L preparation and alerts</p>
-          <p class="story" style="margin-top:18px"><strong>The problem.</strong> Month-end meant assembling the profit-and-loss by hand, then hunting through it for what had gone wrong.</p>
-          <p class="story"><strong>What I built.</strong> A bot that arranges the P&amp;L from the transaction data, explains in plain language what looks wrong (cost jumps, margin slips, possible duplicate payments, uncategorised entries) and sends the important updates, such as receivables and upcoming payments. The screen shown is a demo with invented figures, because the client version is confidential.</p>
-          <div class="facts">
-            <div><b>Arranged</b><span>P&amp;L laid out and compared with the previous month</span></div><div><b>Explained</b><span>flags what is wrong, in plain words</span></div><div><b>Alerts</b><span>overdue receivables and upcoming payments</span></div><div><b>Confidential</b><span>client data never shown; demo uses sample figures</span></div>
-          </div>
-          <div class="tags"><span class="tag">Finance automation</span><span class="tag">P&amp;L analysis</span><span class="tag">Anomaly flags</span><span class="tag">Client build</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Demo screen, sample data</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="fin-bot.webp" alt="Demo screen, sample data"></button><em class="red" data-red>Demo · invented figures</em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="fin-bot.webp" data-cap="Demo screen, sample data" data-red="Demo · invented figures"><img loading="lazy" decoding="async" src="fin-bot.webp" alt=""><span>Demo screen, sample data</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- SCRAPER -->
-    <article class="case" id="scraper">
-      <div class="case-top">
-        <div>
-          <span class="mono live">Client build · command line</span>
-          <h3>Terminal Web Scraper</h3>
-          <p class="role">Designed and built for a client · research from the terminal</p>
-          <p class="story" style="margin-top:18px"><strong>The problem.</strong> Finding details about a business or a topic meant opening dozens of tabs and copying things across by hand.</p>
-          <p class="story"><strong>What I built.</strong> A terminal tool that takes a query, searches the web, opens the results and follows the contact pages, then extracts the useful details and prints them with the sources that back each one. The screen shown is a demo with sample data.</p>
-          <div class="facts">
-            <div><b>One command</b><span>query in, structured details out</span></div><div><b>Sourced</b><span>every detail lists where it was found</span></div><div><b>Exportable</b><span>results saved to a file for the next step</span></div><div><b>Terminal</b><span>no interface to install or learn</span></div>
-          </div>
-          <div class="tags"><span class="tag">Web scraping</span><span class="tag">CLI tooling</span><span class="tag">Data extraction</span><span class="tag">Client build</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Terminal demo, sample data</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="scraper.webp" alt="Terminal demo, sample data"></button><em class="red" data-red hidden></em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="scraper.webp" data-cap="Terminal demo, sample data" data-red=""><img loading="lazy" decoding="async" src="scraper.webp" alt=""><span>Terminal demo, sample data</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </div>
+<section class="numbers" id="numbers" aria-labelledby="numbers-title">
+  <div class="section-top reveal"><p class="eyebrow">FROM THE INSIDE OF THE SYSTEMS</p><span class="small-note">FIGURES FROM PLATFORMS I BUILT AND RUN</span></div>
+  <div class="section-heading reveal"><h2 id="numbers-title">Real systems.<br><span class="muted">Real numbers.</span></h2><p>Not mock-ups. These are the sizes of the things I have put into production.</p></div>
+  <div class="num-grid"><div class="num reveal"><b class="count" data-to="9" data-suffix="">9</b><span>role types in one platform, each scoped by city zone on the server</span></div><div class="num reveal"><b class="count" data-to="800" data-suffix="+">800+</b><span>fault codes in 7 categories, searchable by technicians and the call desk</span></div><div class="num reveal"><b class="count" data-to="8000" data-suffix="+">8,000+</b><span>spare-part units tracked across 500+ SKUs, with a full ledger</span></div><div class="num reveal"><b class="count" data-to="110" data-suffix="">110</b><span>cities in a province-first zone lookup that routes every job correctly</span></div><div class="num reveal"><b class="count" data-to="430" data-suffix="">430</b><span>active clients on the book of my own solar-care venture</span></div><div class="num reveal"><b class="count" data-to="260" data-suffix="+">260+</b><span>jobs completed in a single month, scheduled and invoiced in one system</span></div></div>
 </section>
-
-<section id="websites">
-  <div class="w">
-    <div class="sec-head">
-      <div><span class="mono">Websites</span><h2 style="margin-top:12px">Public sites people actually visit</h2></div>
-      <p>Canadian companies, a national sports federation and a Karachi interiors studio. Designed and built from scratch, with staff-editable back ends where the team needs one.</p>
-    </div>
-
-    <!-- HIDDEN until fotilepk.com is live again: remove this comment wrapper to restore. RESTORE-START 
-    <article class="case" id="web">
-      <div class="case-top">
-        <div>
-          <span class="mono live soon">Built · preparing launch</span>
-          <h3>Fotile Pakistan Website</h3>
-          <p class="role">Design, front end and CMS · hand-written HTML, CSS, JS, PHP</p>
-          <p class="story" style="margin-top:18px"><strong>The problem.</strong> A slow WordPress site, no way to quote, and staff who needed a developer for every price change.</p>
-          <p class="story"><strong>What I built.</strong> A cinematic replacement with a bespoke animated opening on every flagship page, interactive 3D product explorers in Three.js, a synthesized Web Audio score, a quote basket that sends to WhatsApp, and a PHP dashboard where staff edit products, badges and photos without touching code. Every old URL is mapped with a 301, so search ranking survives the move.</p>
-          <div class="facts">
-            <div><b>58</b><span>products managed from the dashboard</span></div>
-            <div><b>63</b><span>journal posts migrated with SEO intact</span></div>
-            <div><b>141</b><span>URLs in the sitemap with redirect map</span></div>
-            <div><b>3 → 19 fps</b><span>one animated page rescued by removing blend-mode and fixed-background cost</span></div>
-          </div>
-          <div class="tags"><span class="tag">Three.js</span><span class="tag">Web Audio</span><span class="tag">WebGL</span><span class="tag">PHP admin</span><span class="tag">SEO migration</span><span class="tag">Quote basket</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Two Halves homepage</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="web-halves.webp" alt="Two Halves homepage with a draggable day and night split"></button><em class="red" data-red hidden></em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="web-halves.webp" data-cap="Two Halves homepage" data-red=""><img loading="lazy" decoding="async" src="web-halves.webp" alt=""><span>Two Halves homepage</span></button>
-            <button type="button" aria-pressed="false" data-src="web-opal.webp" data-cap="Opal series launch page" data-red=""><img loading="lazy" decoding="async" src="web-opal.webp" alt=""><span>Opal series launch page</span></button>
-            <button type="button" aria-pressed="false" data-src="web-dish.webp" data-cap="3D product explorer" data-red=""><img loading="lazy" decoding="async" src="web-dish.webp" alt=""><span>3D product explorer</span></button>
-            <button type="button" aria-pressed="false" data-src="web-admin.webp" data-cap="Staff admin analytics" data-red=""><img loading="lazy" decoding="async" src="web-admin.webp" alt=""><span>Staff admin analytics</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
- RESTORE-END -->
-
-    <!-- BOGO SOLUTIONS -->
-    <article class="case" id="bogo">
-      <div class="case-top">
-        <div>
-          <span class="mono live">Live · Canada</span>
-          <h3>Bogo Solutions</h3>
-          <p class="role">Digital marketing agency, Canada · project manager, led the full online presence</p>
-          <p class="story" style="margin-top:18px"><strong>The brief.</strong> A Canadian growth agency needed one online presence that explains its services and proves results to owners who want more traffic, leads and revenue.</p>
-          <p class="story"><strong>What I did.</strong> As project manager I headed the whole online presence: the website, its messaging and structure, the service pages for search, paid search, conversion and social, and the growth stories that show the work in action.</p>
-          <div class="facts"><div><b>End to end</b><span>online presence, led as project manager</span></div><div><b>4+</b><span>service lines presented: SEO, paid search, conversion and social</span></div></div>
-          <div class="tags"><span class="tag">Project management</span><span class="tag">Web design</span><span class="tag">SEO</span><span class="tag">Content and messaging</span><span class="tag">Lead generation</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Home page</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="bogo-hero.webp" alt="Bogo Solutions home page"></button><em class="red" data-red hidden></em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="bogo-hero.webp" data-cap="Home page" data-red=""><img loading="lazy" decoding="async" src="bogo-hero.webp" alt=""><span>Home page</span></button>
-            <button type="button" aria-pressed="false" data-src="bogo-services.webp" data-cap="Services" data-red=""><img loading="lazy" decoding="async" src="bogo-services.webp" alt=""><span>Services</span></button>
-            <button type="button" aria-pressed="false" data-src="bogo-results.webp" data-cap="Growth stories" data-red=""><img loading="lazy" decoding="async" src="bogo-results.webp" alt=""><span>Growth stories</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- G FORCE SECURITY -->
-    <article class="case" id="gforce">
-      <div class="case-top">
-        <div>
-          <span class="mono live">Live · Canada</span>
-          <h3>G Force Security Website</h3>
-          <p class="role">Security guard company serving Canada · built from scratch</p>
-          <p class="story" style="margin-top:18px"><strong>The brief.</strong> A licensed Canadian security firm needed a site that wins quotes: clear services, locations across provinces and a fast way to ask for protection.</p>
-          <p class="story"><strong>What I built.</strong> The whole site from scratch: a bold home page, service and location pages, a guided quote pop-up that asks only what is relevant to the type of site, and credibility sections for certifications, awards and years of service.</p>
-          <div class="facts"><div><b>Solo build</b><span>designed and built by me alone</span></div><div><b>Canada</b><span>Ontario, BC and national coverage</span></div></div>
-          <div class="tags"><span class="tag">Built from scratch</span><span class="tag">Responsive</span><span class="tag">Quote funnel</span><span class="tag">Credibility pages</span><span class="tag">Lead capture</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Home page</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="gf-hero.webp" alt="G Force Security home page"></button><em class="red" data-red hidden></em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="gf-hero.webp" data-cap="Home page" data-red=""><img loading="lazy" decoding="async" src="gf-hero.webp" alt=""><span>Home page</span></button>
-            <button type="button" aria-pressed="false" data-src="gf-quote.webp" data-cap="Guided quote pop-up" data-red=""><img loading="lazy" decoding="async" src="gf-quote.webp" alt=""><span>Guided quote pop-up</span></button>
-            <button type="button" aria-pressed="false" data-src="gf-about.webp" data-cap="Credentials and vision" data-red=""><img loading="lazy" decoding="async" src="gf-about.webp" alt=""><span>Credentials and vision</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- ALPINE CANADA -->
-    <article class="case" id="alpine">
-      <div class="case-top">
-        <div>
-          <span class="mono live">Live · Canada</span>
-          <h3>Alpine Canada Website</h3>
-          <p class="role">Website for the national ski federation · web design and development</p>
-          <p class="story" style="margin-top:18px"><strong>The brief.</strong> One site for racers, coaches, officials, clubs and fans of Canada's national ski team, in both official languages.</p>
-          <p class="story"><strong>What it does.</strong> A pill-shaped navigation that splits visitors into Team &amp; News, Competition, Racer, Coach, Official, Club and Safe Sport, a featured-news hero, category-tagged story cards, social links, a donate call to action and a French switch on every page.</p>
-          <div class="facts">
-            <div><b>7</b><span>audience sections in the main navigation</span></div>
-            <div><b>EN / FR</b><span>bilingual from the top bar</span></div>
-          </div>
-          <div class="tags"><span class="tag">Responsive</span><span class="tag">Bilingual</span><span class="tag">News CMS</span><span class="tag">Editorial design</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>Home and featured news</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="alpine-hero.webp" alt="Alpine Canada home page with featured news"></button><em class="red" data-red hidden></em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="alpine-hero.webp" data-cap="Home and featured news" data-red=""><img loading="lazy" decoding="async" src="alpine-hero.webp" alt=""><span>Home and featured news</span></button>
-            <button type="button" aria-pressed="false" data-src="alpine-news.webp" data-cap="News cards" data-red=""><img loading="lazy" decoding="async" src="alpine-news.webp" alt=""><span>News cards</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- AMAZA -->
-    <article class="case" id="amaza">
-      <div class="case-top">
-        <div>
-          <span class="mono live">Live · Amaza Homes</span>
-          <h3>Amaza Homes Studio Site</h3>
-          <p class="role">Design, development and brand growth</p>
-          <p class="story" style="margin-top:18px"><strong>The problem.</strong> A premium Karachi kitchen and interiors studio whose website looked like a catalogue.</p>
-          <p class="story"><strong>What I built.</strong> A dark, editorial site with a material visualiser powered by the Gemini API, so clients can preview finishes in a real kitchen, plus a gallery, process and journal pages and a radar-style location map.</p>
-          <div class="facts">
-            <div><b>7</b><span>finishes in the AI material visualiser</span></div>
-            <div><b>Gemini</b><span>API behind the visualiser</span></div>
-          </div>
-          <div class="tags"><span class="tag">Gemini API</span><span class="tag">Canvas</span><span class="tag">SEO</span></div>
-        </div>
-        <div class="gal" data-gal>
-          <figure class="shot" style="margin:0"><div class="bar"><i></i><i></i><i></i><span data-title>About</span></div><button class="view" type="button" aria-label="Enlarge screenshot"><img loading="lazy" decoding="async" data-main src="amaza-about.webp" alt="Amaza Homes about page"></button><em class="red" data-red hidden></em></figure>
-          <div class="thumbs">
-            <button type="button" aria-pressed="true" data-src="amaza-about.webp" data-cap="About" data-red=""><img loading="lazy" decoding="async" src="amaza-about.webp" alt=""><span>About</span></button>
-            <button type="button" aria-pressed="false" data-src="amaza-vis.webp" data-cap="Material visualiser" data-red=""><img loading="lazy" decoding="async" src="amaza-vis.webp" alt=""><span>Material visualiser</span></button>
-            <button type="button" aria-pressed="false" data-src="amaza-find.webp" data-cap="Find us" data-red="Phone redacted"><img loading="lazy" decoding="async" src="amaza-find.webp" alt=""><span>Find us</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </div>
+<section class="process section-wrap" id="process" aria-labelledby="process-title">
+  <div class="section-top reveal"><p class="eyebrow">03 / HOW I WORK</p><span class="small-note">FROM “WHAT IF?” TO LIVE</span></div>
+  <div class="section-heading reveal"><h2 id="process-title">One person.<br><span class="muted">Five calm steps.</span></h2><p>A simple path from a rough idea to something your customers or your team use every day.</p></div>
+  <div class="process-track"><div class="step reveal"><span class="dot"></span><small>01</small><h3>Listen</h3><p>We talk the idea through on WhatsApp or a call. What should happen, for whom, and what is it worth to you?</p></div><div class="step reveal"><span class="dot"></span><small>02</small><h3>Shape</h3><p>Screens, data and scope agreed on one page before any code, so there are no surprises later.</p></div><div class="step reveal"><span class="dot"></span><small>03</small><h3>Build</h3><p>Database, interface, automation and AI, all by one person. No hand-offs, no lost context.</p></div><div class="step reveal"><span class="dot"></span><small>04</small><h3>Launch</h3><p>Deployed on a real server, tested with your team, with a fast fix loop in the first week.</p></div><div class="step reveal"><span class="dot"></span><small>05</small><h3>Grow</h3><p>Analytics, SEO and monthly care, because the first version is never the last.</p></div></div>
 </section>
-
-<section id="more">
-  <div class="w">
-    <div class="sec-head">
-      <div><span class="mono">Also shipped</span><h2 style="margin-top:12px">Smaller tools, same standard</h2></div>
-      <p>Not every problem needs a platform. These solved one problem each.</p>
-    </div>
-    <div class="grid3">
-      <div class="card"><h4>StockIQ</h4><p>An offline-first warehouse audit app. Staff scan barcodes with no signal, and a serial number resolves to its model through a prefix table. Photo evidence, guided counts and a five-second undo.</p><div class="tags"><span class="tag">PWA</span><span class="tag">Offline</span><span class="tag">Barcode</span></div></div>
-      <div class="card"><h4>Four-seat VoIP call centre</h4><p>Designed a FreePBX and Asterisk call centre for a regional office, with a carrier SIP trunk and AMI screen-pops into the Service Portal.</p><div class="tags"><span class="tag">FreePBX</span><span class="tag">Asterisk</span><span class="tag">SIP</span></div></div>
-      <div class="card"><h4>Boss feed &amp; KPI bridge</h4><p>A token-secured JSON API that lets the management portal read service performance live, cached for two minutes, plus a scorecard that joins service and attendance data per technician.</p><div class="tags"><span class="tag">REST</span><span class="tag">Caching</span><span class="tag">Integration</span></div></div>
-      <div class="card"><h4>Launch campaign kit</h4><p>For a flagship product launch: a single-file cinematic digital invitation, a 17-slide pitch deck for local management and head office, a 38-item event checklist and an AI video production workflow.</p><div class="tags"><span class="tag">HTML</span><span class="tag">Deck</span><span class="tag">AI video</span></div></div>
-      <div class="card"><h4>Stock audit engine</h4><p>Reconciled a 264-SKU physical count against the system report and generated a clear variance PDF for management.</p><div class="tags"><span class="tag">Python</span><span class="tag">PDF</span></div></div>
-      <div class="card"><h4>Office network governance</h4><p>DNS-level filtering with logging behind the office router, so distracting sites and games are blocked while business tools like WhatsApp keep working.</p><div class="tags"><span class="tag">DNS</span><span class="tag">Networking</span></div></div>
-      <div class="card"><h4>Trex Software House</h4><p>My own studio. We build CRM, ERP and custom software for businesses, with websites and social media management as add-ons, and move clients to monthly plans.</p><div class="tags"><span class="tag">CRM</span><span class="tag">ERP</span><span class="tag">Custom software</span></div></div>
-      <div class="card"><h4>Digital growth for client brands</h4><p>Took Cleaning 365 Services and G Force Security, both in Canada, from no online presence to a working one with a website, search ranking, Instagram growth and paid ads.</p><div class="tags"><span class="tag">SEO</span><span class="tag">Paid ads</span><span class="tag">Instagram</span></div></div>
-      <div class="card"><h4>Business listing recovery</h4><p>Regained control of a company's Google Business Profile after a former employee had swapped in their own contact number, and locked access down so it cannot repeat.</p><div class="tags"><span class="tag">Google Business</span><span class="tag">Access control</span></div></div>
-    </div>
+<section class="about section-wrap" id="about" aria-labelledby="about-title">
+  <div class="section-top reveal"><p class="eyebrow">04 / THE HUMAN BEHIND THE BUILDS</p><span class="small-note">A DEVELOPER WITH A FOUNDER’S MINDSET</span></div>
+  <div class="about-layout">
+    <div class="about-copy reveal"><h2 id="about-title">Curious by nature.<br><span class="muted">Builder by default.</span></h2><p class="large-copy">Hey, I’m Ali <span class="wave">↗</span></p><p>A full-stack developer, AI builder and the person who keeps asking, “could this work better?” Based in Karachi, building for people across the UK, Canada and beyond.</p><p>I started in digital marketing. Today, I build the whole thing: the database, the interface, the automation, the deployment. That mix means I care just as much about why someone uses a product as how it works.</p><a class="text-link" href="https://www.linkedin.com/in/ali-younus-5b9413284" target="_blank" rel="noopener noreferrer">A little more about me <span>↗</span></a></div>
+    <div class="code-sculpture reveal"><div class="editor-top"><span><i></i><i></i><i></i></span><span>the-way-i-work.js</span><span>↗</span></div><div class="code-body"><div><small>01</small><span class="syntax-purple">const</span> developer = {</div><div><small>02</small>&nbsp; name: <span class="syntax-cyan">'Ali Younus'</span>,</div><div><small>03</small>&nbsp; mindset: <span class="syntax-cyan">'end-to-end'</span>,</div><div><small>04</small>&nbsp; fuel: [<span class="syntax-cyan">'curiosity'</span>, <span class="syntax-cyan">'chai'</span>],</div><div><small>05</small>&nbsp; handoffs: <span class="syntax-orange">0</span>,</div><div><small>06</small>&nbsp; <span class="syntax-purple">build</span>(idea) {</div><div><small>07</small>&nbsp; &nbsp; <span class="syntax-purple">return</span> makeItReal(idea);</div><div><small>08</small>&nbsp; }</div><div><small>09</small>};<span class="caret"></span></div></div><div class="editor-bottom"><span class="status-dot"></span> FROM THE FIRST SPARK TO THE FINAL DEPLOY <span>✓</span></div><div class="studio-stamp">INDEPENDENT<br>BY DESIGN <span>✳</span></div></div>
   </div>
+  <div class="expertise" id="build"><a href="#work" data-category-link="Systems"><span class="expertise-number">01</span><h3>Systems that do the heavy lifting.</h3><p>ERP / CRM / Dashboards / Offline apps</p><span class="row-arrow">↗</span></a><a href="#work" data-category-link="AI & automation" id="ai"><span class="expertise-number">02</span><h3>Intelligence with a purpose.</h3><p>AI agents / Automation / Computer vision</p><span class="row-arrow">↗</span></a><a href="#work" data-category-link="Websites" id="websites"><span class="expertise-number">03</span><h3>Digital experiences with feeling.</h3><p>Websites / Interactive design / Brand growth</p><span class="row-arrow">↗</span></a></div>
+  <div class="toolbox" id="stack"><span class="eyebrow">MY DAILY LANGUAGE</span><div><span>React</span><b>·</b><span>Node.js</span><b>·</b><span>PHP</span><b>·</b><span>PostgreSQL</span><b>·</b><span>Three.js</span><b>·</b><span>AI APIs</span></div></div>
 </section>
-
-<section id="depth">
-  <div class="w">
-    <div class="sec-head">
-      <div><span class="mono">Engineering depth</span><h2 style="margin-top:12px">Bugs I hunted down</h2></div>
-      <p>Running software that staff depend on teaches things tutorials do not. Four fixes I am proud of.</p>
-    </div>
-    <div class="stories">
-      <div class="story-c"><span class="mono">Silent data loss</span><h4>Roles that vanished on their own</h4><p>Users kept losing access and it looked like a breach. The cause was one page that redefined a database enum on every load, which makes MySQL blank any value not in the new list.</p><p><b>Fix:</b> removed the statement, converted the column to a plain string, and made the admin screen detect and repair the old schema.</p></div>
-      <div class="story-c"><span class="mono">Wrong by default</span><h4>Jobs filed to the wrong city</h4><p>A lookup quietly returned the default city whenever a city was missing, so jobs from other provinces landed in the wrong zone for months.</p><p><b>Fix:</b> a province-first, case-insensitive lookup covering 110 cities, applied at all three entry points including the call-centre page that never set a zone.</p></div>
-      <div class="story-c"><span class="mono">Access control</span><h4>Reports that leaked the whole country</h4><p>Older analytics and export pages pre-dated zone scoping, so a regional manager could download company-wide data.</p><p><b>Fix:</b> audited every legacy page and locked scope on the server, overriding anything in the URL.</p></div>
-      <div class="story-c"><span class="mono">Performance</span><h4>From 3 fps to 19 fps</h4><p>A flagship animated page crawled because of fixed backgrounds, live SVG turbulence and animated blend modes.</p><p><b>Fix:</b> moved the effects to GPU-composited transforms. Same look, roughly six times smoother in testing.</p></div>
-    </div>
-  </div>
+<section class="lab section-wrap" id="more" aria-labelledby="lab-title">
+ <div class="section-top reveal"><p class="eyebrow">05 / THE OTHER ORBITS</p><span class="small-note">SMALLER BUILDS. SAME OBSESSION.</span></div>
+ <div class="section-heading reveal"><h2 id="lab-title">Always building.<br><span class="muted">Never standing still.</span></h2><p>Offline tools, connected systems and ideas<br>that wouldn’t leave me alone.</p></div>
+ <div class="archive-list" id="archive-list"></div>
+ <div class="engineering" id="depth"><div><span class="eyebrow">BEHIND THE SCREENS</span><h3>The less glamorous.<br>The equally important.</h3><p>Real software has real edge cases.<br>Here are a few I’ve untangled.</p></div><div id="engineering-stories"></div></div>
+ <details class="beyond"><summary>AI in practice: the workflows behind the work <span>+</span></summary><div class="extra-content" id="ai-workflows"></div></details>
+ <details class="beyond" id="beyond"><summary>Beyond code: brand, growth & strategy <span>+</span></summary><div id="beyond-content"></div></details>
 </section>
-
-<section id="stack">
-  <div class="w">
-    <div class="sec-head">
-      <div><span class="mono">Toolbox</span><h2 style="margin-top:12px">What I build with</h2></div>
-      <p>Chosen per problem: shared hosting where it is enough, a managed droplet where it is not.</p>
-    </div>
-    <div class="skills">
-      <div><h5>Back end</h5><ul><li>PHP 7.4+ <small>no-framework, hardened</small></li><li>Node.js · Express</li><li>MySQL · PostgreSQL</li><li>REST and token APIs</li></ul></div>
-      <div><h5>Front end</h5><ul><li>React · PWA</li><li>Vanilla JS, CSS</li><li>Three.js · WebGL · Canvas</li><li>Leaflet maps</li></ul></div>
-      <div><h5>Infrastructure</h5><ul><li>DigitalOcean · Nginx · PM2</li><li>DirectAdmin shared hosting</li><li>FreePBX · Asterisk</li><li>Git · private repos</li></ul></div>
-      <div><h5>AI &amp; automation</h5><ul><li>Claude and Gemini APIs</li><li>AI video pipelines</li><li>Google Apps Script</li><li>Prompt-engineered workflows</li></ul></div>
-    </div>
-  </div>
-</section>
-
-<section id="beyond">
-  <div class="w">
-    <div class="sec-head">
-      <div><span class="mono">Beyond code</span><h2 style="margin-top:12px">Brand, growth and strategy</h2></div>
-      <p>I started in digital marketing, and it shows in how I build: software that people want to open, and products that are easy to sell.</p>
-    </div>
-    <div class="two">
-      <div class="card"><h4>Brands built from zero</h4><p>Took four businesses from no digital footprint to a working one: Instagram growth, websites, SEO and paid advertising.</p><div class="brands"><span class="tag">National appliance brand</span><span class="tag">Amaza Homes</span><span class="tag">Cleaning 365 Services · Canada</span><span class="tag">G Force Security · Canada</span></div></div>
-      <div class="card"><h4>Board-level strategy</h4><p>Authored a five-year transformation plan for a national appliance brand covering retail format, mobile experiences and a digital-first platform, and the AI-driven commercial production workflow behind its product films.</p><div class="tags"><span class="tag">Strategy</span><span class="tag">Product film</span><span class="tag">Go-to-market</span></div></div>
-    </div>
-  </div>
-</section>
+<section class="contact section-wrap" id="contact" aria-labelledby="contact-title"><div class="contact-top"><p class="eyebrow"><span class="status-dot"></span> 06 / YOUR NEXT IDEA STARTS HERE</p><span class="small-note">BASED IN KARACHI. BUILDING EVERYWHERE.</span></div><a class="contact-title" href="https://wa.me/923491979171" target="_blank" rel="noopener noreferrer"><h2 id="contact-title">Let’s make<br>something <span>matter.</span></h2><span class="contact-arrow">↗</span></a><div class="brief" id="brief">
+  <div><h3>Start with a message.<br>Not a form.</h3><p>Pick what fits and add a line about your idea. I turn it into a WhatsApp message you can send in one tap, and I reply personally.</p>
+    <fieldset><legend>What do you need?</legend><div class="chips"><button type="button" class="chip" data-kind="need" data-value="Business platform or ERP" aria-pressed="false">Business platform or ERP</button><button type="button" class="chip" data-kind="need" data-value="AI bot or automation" aria-pressed="false">AI bot or automation</button><button type="button" class="chip" data-kind="need" data-value="Face recognition" aria-pressed="false">Face recognition</button><button type="button" class="chip" data-kind="need" data-value="Website or e-commerce" aria-pressed="false">Website or e-commerce</button><button type="button" class="chip" data-kind="need" data-value="Mobile or offline app" aria-pressed="false">Mobile or offline app</button><button type="button" class="chip" data-kind="need" data-value="Not sure yet" aria-pressed="false">Not sure yet</button></div></fieldset>
+    <fieldset><legend>When?</legend><div class="chips"><button type="button" class="chip" data-kind="time" data-value="As soon as possible" aria-pressed="false">As soon as possible</button><button type="button" class="chip" data-kind="time" data-value="Within 3 months" aria-pressed="false">Within 3 months</button><button type="button" class="chip" data-kind="time" data-value="Just exploring" aria-pressed="false">Just exploring</button></div></fieldset></div>
+  <div><label class="sr-only" for="brief-text">About your idea</label><textarea id="brief-text" placeholder="One line about the idea or the problem you want solved (optional)"></textarea>
+    <div class="preview" aria-live="polite"><b>Your message</b><br><span id="brief-preview"></span></div>
+    <a class="send" id="brief-send" href="https://wa.me/923491979171" target="_blank" rel="noopener noreferrer">Send on WhatsApp <span>↗</span></a><span class="note">Opens WhatsApp with the message ready. Nothing is stored on this site.</span></div>
+</div>
+<div class="contact-bottom"><p>Got a wonderfully ambitious idea?<br>I’d love to hear it.</p><div><a href="https://wa.me/923491979171" target="_blank" rel="noopener noreferrer">WhatsApp <span>↗</span></a><a href="https://www.linkedin.com/in/ali-younus-5b9413284" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a></div></div></section>
 </main>
-
-<section class="contact" id="contact" style="padding-top:80px">
-  <div class="w">
-    <span class="mono" style="color:inherit;opacity:.75">Working remotely · UK · Canada · worldwide</span>
-    <h2 style="margin-top:14px">Let's build something people rely on.</h2>
-    <p>I take on a small number of projects each year: custom platforms, AI bots and automation, and websites, either through Trex Software House or as an embedded senior engineer. Message me on WhatsApp for a live walkthrough of any platform above.</p>
-    <div class="row" id="contactRow"></div>
-  </div>
-</section>
-
-<footer>
-  <div class="w"><span class="mono">Ali Younus · Karachi, Pakistan</span><span class="mono">Product screens are demo builds with invented data</span></div>
-</footer>
-
-<div class="lb" id="lb" role="dialog" aria-label="Screenshot preview"><img loading="lazy" decoding="async" alt=""><p></p></div>
-
-<script>
-/* Fill these in to show contact pills */
-var CONTACT={email:"",linkedin:"linkedin.com/in/ali-younus-5b9413284",whatsapp:"+92 349 1979171"};
-(function(){
-  var row=document.getElementById('contactRow'),any=false;
-  [["Email",CONTACT.email],["LinkedIn",CONTACT.linkedin],["WhatsApp",CONTACT.whatsapp]].forEach(function(p){
-    if(p[1]){any=true;var isL=p[0]==='LinkedIn',isW=p[0]==='WhatsApp';var s=document.createElement(isL||isW?'a':'span');s.className='pill';s.textContent=p[0]+': '+p[1];if(isL||isW){s.href=isW?'https://wa.me/'+p[1].replace(/\D/g,''):'https://www.'+p[1];s.target='_blank';s.rel='noopener';s.style.textDecoration='none'}row.appendChild(s)}
-  });
-  if(!any){var s=document.createElement('span');s.className='pill';s.textContent='Reply to the message that sent you this link';row.appendChild(s)}
-
-  var lb=document.getElementById('lb'),lbi=lb.querySelector('img'),lbp=lb.querySelector('p');
-  function close(){lb.classList.remove('on')}
-  lb.addEventListener('click',close);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
-
-  document.querySelectorAll('[data-gal]').forEach(function(g){
-    var main=g.querySelector('[data-main]'),title=g.querySelector('[data-title]'),red=g.querySelector('[data-red]'),btns=g.querySelectorAll('.thumbs button');
-    function show(b){
-      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
-      main.src=b.dataset.src;main.alt=b.dataset.cap;
-      title.textContent=b.dataset.cap;
-      var r=b.dataset.red;red.hidden=!r;red.textContent=r||'';
-    }
-    btns.forEach(function(b){b.addEventListener('click',function(){show(b)})});
-    g.querySelector('.view').addEventListener('click',function(){
-      lbi.src=main.src;lbi.alt=main.alt;lbp.textContent=title.textContent+(red.hidden?'':' · '+red.textContent);lb.classList.add('on');
-    });
-  });
-})();
-</script>
-
+<footer><a class="wordmark" href="#top">ay<span class="footer-star">✳</span></a><span>© <span id="year">2026</span> Ali Younus. Made with intent.</span><a href="#top">BACK TO THE TOP <span>↑</span></a><span class="version">PORTFOLIO / 2.1</span></footer>
+<dialog id="project-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><span class="eyebrow">A CLOSER LOOK / <span id="dialog-index"></span></span><button class="close-dialog" aria-label="Close project">Close <span>×</span></button></div><div class="dialog-content"><p class="eyebrow" id="dialog-category"></p><h2 id="dialog-title"></h2><p id="dialog-role"></p><div class="device-switcher" id="device-switcher" hidden><div role="group" aria-label="Project device views"><button type="button" data-device="desktop" aria-pressed="true">▱ Desktop</button><button type="button" data-device="mobile" aria-pressed="false">▯ Mobile views</button></div><p id="device-description" aria-live="polite"></p></div><figure class="dialog-figure"><a id="full-image" target="_blank" rel="noopener" aria-label="Open full size screenshot in a new tab"><img id="dialog-image" alt=""></a><figcaption><span id="image-caption"></span><span id="image-note"></span></figcaption></figure><div class="gallery-controls"><button id="previous-image" aria-label="Previous screenshot">←</button><div id="gallery-thumbs"></div><button id="next-image" aria-label="Next screenshot">→</button></div><div class="dialog-story" id="dialog-story"></div><div class="dialog-facts" id="dialog-facts"></div><div class="tags" id="dialog-tags"></div><a class="button button-accent dialog-cta" href="https://wa.me/923491979171" target="_blank" rel="noopener noreferrer">Ask for a walkthrough <span>↗</span></a></div></dialog>
 </body>
 </html>
