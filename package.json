@@ -1,0 +1,10 @@
+{
+  "name": "ali-younus-portfolio-v2",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Ali Younus — an interactive creative universe",
+  "scripts": {
+    "start": "node dev-server.cjs",
+    "check": "node --check app.js && node --check projects.js && node verify.cjs"
+  }
+}

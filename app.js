@@ -7,7 +7,7 @@
   let paused = reducedMotion.matches;
   try { paused = paused || sessionStorage.getItem('ay-motion-paused') === 'true'; } catch {}
   const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const order = ['service','ams','amaza','face','solar','gforce','finbot','alpine','bogo','scraper'];
+  const order = ['service','ams','amaza','face','solar','restaurant','finbot','alpine','conwest','paper','madethought','scraper'];
   const ordered = order.map(id => projects.find(p => p.id === id));
   const grid = $('#projects');
   ordered.forEach((p, i) => {
@@ -90,7 +90,22 @@
     const item = activeImages[imageIndex];
     $('#dialog-image').src = item.src;
     $('#dialog-image').alt = item.caption;
-    $('#full-image').href = item.src;
+    $('#full-image').href = item.video || item.src;
+    let video = $('#dialog-video');
+    if (!video) {
+      video = document.createElement('video');
+      video.id = 'dialog-video';
+      video.controls = true; video.muted = true; video.loop = true; video.playsInline = true;
+      video.preload = 'metadata'; video.hidden = true;
+      $('#dialog-image').parentNode.after(video);
+    }
+    if (item.video) {
+      video.poster = item.src; video.src = item.video; video.hidden = false;
+      $('#full-image').hidden = true;
+    } else {
+      video.pause(); video.removeAttribute('src'); video.hidden = true;
+      $('#full-image').hidden = false;
+    }
     $('#image-caption').textContent = `${imageIndex + 1} / ${activeImages.length} — ${item.caption}`;
     $('#image-note').textContent = item.note;
     $$('#gallery-thumbs button').forEach((b,i) => b.setAttribute('aria-pressed',String(i===imageIndex)));
@@ -140,7 +155,7 @@
   });
   $('.close-dialog').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', e => { if(e.target===dialog) { const r=dialog.getBoundingClientRect(); if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom) dialog.close(); } });
-  dialog.addEventListener('close', () => { document.body.classList.remove('modal-open'); opener?.focus({preventScroll:true}); });
+  dialog.addEventListener('close', () => { const v = $('#dialog-video'); if (v) v.pause(); document.body.classList.remove('modal-open'); opener?.focus({preventScroll:true}); });
   dialog.addEventListener('keydown', e => {
     if (e.key==='ArrowRight') { e.preventDefault(); showImage(imageIndex+1); }
     if (e.key==='ArrowLeft') { e.preventDefault(); showImage(imageIndex-1); }

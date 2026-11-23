@@ -235,6 +235,50 @@ window.PORTFOLIO = {
       ]
     },
     {
+      "id": "restaurant",
+      "name": "Restaurant ERP",
+      "category": "Systems",
+      "headline": "One screen for the owner.",
+      "summary": "A custom ERP for a Karachi restaurant: shift close, food cost, stock, staff, FBR invoicing and purchasing in one place.",
+      "color": "lavender",
+      "role": "Software engineer · custom ERP, in development",
+      "status": "In build · demo walkthrough",
+      "story": [
+        "<strong>The brief.</strong> A restaurant in Karachi needed the nightly questions owners chase answered in one place: did the till match, what is food costing, what is running low, and are tax invoices going through.",
+        "<strong>What I'm building.</strong> Seven connected modules: dashboard, shift close, food cost, inventory, staff, FBR invoicing and purchasing. Shift close checks the till report, FBR invoices and card settlement, flags a cash shortage and ends with a manager sign-off.",
+        "<strong>About the video.</strong> An animated walkthrough of the demo build, with invented data. No client names or real figures appear."
+      ],
+      "facts": [
+        {
+          "value": "7",
+          "label": "connected modules in one interface"
+        },
+        {
+          "value": "Shift close",
+          "label": "till, FBR and card checks end in a manager sign-off"
+        },
+        {
+          "value": "FBR",
+          "label": "tax invoicing built into the same system"
+        }
+      ],
+      "tags": [
+        "Custom ERP",
+        "Shift close",
+        "Food cost",
+        "FBR invoicing",
+        "Dashboards"
+      ],
+      "images": [
+        {
+          "src": "restaurant-erp-poster.webp",
+          "video": "restaurant-erp-build.mp4",
+          "caption": "Build walkthrough (14 s video)",
+          "note": "Animated demo · invented data"
+        }
+      ]
+    },
+    {
       "id": "finbot",
       "name": "Finance Analyst Bot",
       "category": "AI & automation",
@@ -325,102 +369,6 @@ window.PORTFOLIO = {
       ]
     },
     {
-      "id": "bogo",
-      "name": "Bogo Solutions",
-      "category": "Websites",
-      "headline": "Built to turn heads. And grow.",
-      "summary": "A digital agency website with clear services, confident storytelling and a path to enquiry.",
-      "color": "lavender",
-      "role": "Digital marketing agency, Canada · project manager, led the full online presence",
-      "status": "Live · Canada",
-      "story": [
-        "<strong>The brief.</strong> A Canadian growth agency needed one online presence that explains its services and proves results to owners who want more traffic, leads and revenue.",
-        "<strong>What I did.</strong> As project manager I headed the whole online presence: the website, its messaging and structure, the service pages for search, paid search, conversion and social, and the growth stories that show the work in action."
-      ],
-      "facts": [
-        {
-          "value": "End to end",
-          "label": "online presence, led as project manager"
-        },
-        {
-          "value": "4+",
-          "label": "service lines presented: SEO, paid search, conversion and social"
-        }
-      ],
-      "tags": [
-        "Project management",
-        "Web design",
-        "SEO",
-        "Content and messaging",
-        "Lead generation"
-      ],
-      "images": [
-        {
-          "src": "bogo-hero.webp",
-          "caption": "Home page",
-          "note": ""
-        },
-        {
-          "src": "bogo-services.webp",
-          "caption": "Services",
-          "note": ""
-        },
-        {
-          "src": "bogo-results.webp",
-          "caption": "Growth stories",
-          "note": ""
-        }
-      ]
-    },
-    {
-      "id": "gforce",
-      "name": "G Force Security Website",
-      "category": "Websites",
-      "headline": "Confidence at first click.",
-      "summary": "A Canadian security website designed around trust, clear coverage and a guided quote journey.",
-      "color": "sand",
-      "role": "Security guard company serving Canada · built from scratch",
-      "status": "Live · Canada",
-      "story": [
-        "<strong>The brief.</strong> A licensed Canadian security firm needed a site that wins quotes: clear services, locations across provinces and a fast way to ask for protection.",
-        "<strong>What I built.</strong> The whole site from scratch: a bold home page, service and location pages, a guided quote pop-up that asks only what is relevant to the type of site, and credibility sections for certifications, awards and years of service."
-      ],
-      "facts": [
-        {
-          "value": "Solo build",
-          "label": "designed and built by me alone"
-        },
-        {
-          "value": "Canada",
-          "label": "Ontario, BC and national coverage"
-        }
-      ],
-      "tags": [
-        "Built from scratch",
-        "Responsive",
-        "Quote funnel",
-        "Credibility pages",
-        "Lead capture"
-      ],
-      "images": [
-        {
-          "src": "gf-hero.webp",
-          "caption": "Home page",
-          "note": ""
-        },
-        {
-          "src": "gf-quote.webp",
-          "caption": "Guided quote pop-up",
-          "note": ""
-        },
-        {
-          "src": "gf-about.webp",
-          "caption": "Credentials and vision",
-          "note": ""
-        }
-      ]
-    },
-    {
       "id": "alpine",
       "name": "Alpine Canada Website",
       "category": "Websites",
@@ -458,6 +406,147 @@ window.PORTFOLIO = {
         {
           "src": "alpine-news.webp",
           "caption": "News cards",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "conwest",
+      "name": "Conwest",
+      "category": "Websites",
+      "headline": "Built on real people.",
+      "summary": "A Metro Vancouver real estate developer: a bold wordmark, a clear story and a project showcase.",
+      "color": "sand",
+      "role": "Website design · I designed and worked on the design elements",
+      "status": "Live · website",
+      "story": [
+        "<strong>The site.</strong> The public website of a Metro Vancouver real estate developer, built to put its projects and its people up front.",
+        "<strong>What I did.</strong> I designed the site and worked on its design elements: the full-screen wordmark opening, the \"Real People. Real Projects. Real Solutions.\" headline treatment and the project cards with location labels."
+      ],
+      "facts": [
+        {
+          "value": "Design",
+          "label": "my part: the look and the design elements"
+        },
+        {
+          "value": "Live",
+          "label": "public website you can open today"
+        }
+      ],
+      "tags": [
+        "Web design",
+        "UI design",
+        "Visual design",
+        "Real estate"
+      ],
+      "images": [
+        {
+          "src": "conwest-1.webp",
+          "caption": "Opening screen",
+          "note": ""
+        },
+        {
+          "src": "conwest-2.webp",
+          "caption": "Headline and intro",
+          "note": ""
+        },
+        {
+          "src": "conwest-3.webp",
+          "caption": "Project cards",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "paper",
+      "name": "Paper",
+      "category": "Websites",
+      "headline": "Design incredible.",
+      "summary": "The product site for a design canvas built for teams shipping with agents.",
+      "color": "blue",
+      "role": "Website design · I designed and worked on the design elements",
+      "status": "Live · website",
+      "story": [
+        "<strong>The site.</strong> The product website for Paper, a design canvas connected to code, data and agents.",
+        "<strong>What I did.</strong> I worked on the design elements of the site: the quiet typography, the warm paper-toned palette and the product screens that show the canvas in action."
+      ],
+      "facts": [
+        {
+          "value": "Design",
+          "label": "my part: the design elements of the site"
+        },
+        {
+          "value": "Live",
+          "label": "public website you can open today"
+        }
+      ],
+      "tags": [
+        "Web design",
+        "UI design",
+        "Product site",
+        "Typography"
+      ],
+      "images": [
+        {
+          "src": "paper-1.webp",
+          "caption": "Canvas in action",
+          "note": ""
+        },
+        {
+          "src": "paper-2.webp",
+          "caption": "Home page",
+          "note": ""
+        },
+        {
+          "src": "paper-3.webp",
+          "caption": "Customers and product intro",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "madethought",
+      "name": "Made Thought",
+      "category": "Websites",
+      "headline": "Intelligent creativity.",
+      "summary": "The website of a global creative office, with full-screen sector panels and an editorial feel.",
+      "color": "pink",
+      "role": "Website design · I designed and worked on the design elements",
+      "status": "Live · website",
+      "story": [
+        "<strong>The site.</strong> The website of Made Thought, a creative agency with offices in London and New York, whose home page moves through full-screen sectors from innovation to beauty.",
+        "<strong>What I did.</strong> I worked on the design elements: the serif wordmark and typography, the full-screen sector panels such as Innovation and Beauty, and the small thumbnail strip that previews each sector's work."
+      ],
+      "facts": [
+        {
+          "value": "Design",
+          "label": "my part: the design elements of the site"
+        },
+        {
+          "value": "Live",
+          "label": "public website you can open today"
+        }
+      ],
+      "tags": [
+        "Web design",
+        "UI design",
+        "Editorial design",
+        "Typography"
+      ],
+      "images": [
+        {
+          "src": "madethought-1.webp",
+          "caption": "Innovation panel",
+          "note": ""
+        },
+        {
+          "src": "madethought-2.webp",
+          "caption": "Beauty panel",
+          "note": ""
+        },
+        {
+          "src": "madethought-3.webp",
+          "caption": "Opening screen",
           "note": ""
         }
       ]
